@@ -2,17 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import rootReducer from './reducers/rootReducer'
 // import * as serviceWorker from './serviceWorker';
 
-
-
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 
 ReactDOM.render(
-  <Provider>
-    <App />
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
