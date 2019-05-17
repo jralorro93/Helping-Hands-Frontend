@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addUser } from '../actions/actions'
+import { postUser } from '../actions/actions'
 
 class Signup extends Component {
 
   state = {
     selectedOption: "",
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: ""
   }
@@ -26,15 +27,12 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    //Sets new user to current state info
     let newUser = this.state
+    //Takes current user and adds as a payload
     this.props.addUser(newUser)
-    this.setState({
-      selectedOption: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: ""
-    })
+    //Makes a POST request to create new user
+    this.props.postUser(newUser)
   }
 
   render() {
@@ -43,9 +41,9 @@ class Signup extends Component {
         <h1>Join us!</h1>
         <form onSubmit={this.handleSubmit}>
           <label>First name: </label>
-          <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChange}/><br/>
+          <input type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange}/><br/>
           <label>Last name: </label>
-          <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleChange}/><br/>
+          <input type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange}/><br/>
           <label>Email: </label>
           <input type="email" name="email" value={this.state.email} onChange={this.handleChange}/><br/>
           <label>Password: </label>
@@ -66,4 +64,4 @@ class Signup extends Component {
 }
 
 
-export default connect(null, {addUser} )(Signup)
+export default connect(null, {addUser, postUser} )(Signup)

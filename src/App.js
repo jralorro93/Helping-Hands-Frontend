@@ -15,13 +15,8 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/" component={Home}/>
-        <Route exact path='/signup' render ={
-          () => {
-            return (
-              <Signup handleSignup={this.handleSignup}/>
-            )
-          }
-        }/>
+        <Route exact path='/signup' component={Signup}/>
+        <Route exact path="/login" component={Login}/>
       </Switch>
     )
   }
