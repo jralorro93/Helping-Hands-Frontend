@@ -5,6 +5,7 @@ export const addUser = (newUserObj) => {
 
 
 // THUNK
+//CREATES NEW USER FOR SIGNUP
 export const postUser = (user) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/users`, {
@@ -22,6 +23,28 @@ export const postUser = (user) => {
        }})
      })
      .then(r => r.json())
-     .then(res => console.log(res) || dispatch(addUser(res)))
+     .then(user => console.log(user) || dispatch(addUser(user)))
+  }
+}
+
+//Logs-in User with token
+export const loginUser = (user) => {
+  return (dispatch) => {
+    return fetch('http://localhost:3000/api/v1/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ user: {
+        email: user.email,
+        password: user.password,
+      }})
+    })
+    .then(r => r.json())
+    .then(user => {
+      localStorage.setItem('token', user.jwt)
+      dispatch({type: 'LOGIN_USER', payload: user })
+    })
   }
 }

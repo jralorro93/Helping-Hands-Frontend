@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { loginUser } from '../actions/actions';
 
 class Login extends Component  {
 
@@ -13,16 +15,20 @@ class Login extends Component  {
     })
   }
 
-  handleSubmit = (event) => {
+  handleLogin = (event, userObj) => {
     event.preventDefault();
-    
+    this.props.loginUser(userObj)
+    .then( () => this.props.history.push('/ClientSide'))
   }
+
+
+
 
   render() {
     return (
       <div>
         <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(event) => this.handleLogin(event, this.state)}>
           <label>Email: </label>
           <input type="email" name="email" value={this.state.email} onChange={this.handleChange} /><br/>
           <label>Password: </label>
@@ -33,4 +39,5 @@ class Login extends Component  {
     )
   }
 }
-export default Login
+
+export default connect(null, { loginUser })(Login)
