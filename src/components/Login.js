@@ -17,8 +17,7 @@ class Login extends Component  {
 
   handleLogin = (event, userObj) => {
     event.preventDefault();
-    this.props.loginUser(userObj)
-    .then( () => this.props.history.push('/ClientSide'))
+    this.props.loginUser(userObj, this.props.history)
   }
 
 

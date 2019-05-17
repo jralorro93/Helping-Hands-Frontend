@@ -28,7 +28,7 @@ export const postUser = (user) => {
 }
 
 //Logs-in User with token
-export const loginUser = (user) => {
+export const loginUser = (user, history) => {
   return (dispatch) => {
     return fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
@@ -45,6 +45,11 @@ export const loginUser = (user) => {
     .then(user => {
       localStorage.setItem('token', user.jwt)
       dispatch({type: 'LOGIN_USER', payload: user })
+      if (user.user.role === "client")  {
+        history.push('/ClientSide')
+      } else {
+        history.push('/ServiceSide')
+      }
     })
   }
 }
