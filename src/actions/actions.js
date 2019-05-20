@@ -63,3 +63,23 @@ export const getServices = () => {
       .then(services => dispatch({type: "GET_SERVICES", payload: services}))
   }
 }
+
+//Posts a booking to api/v1/bookings
+export const postBooking = (selectedSP) => {
+  return (dispatch) => {
+    return fetch('http://localhost:3000/api/v1/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        client_id: selectedSP.client_id,
+        service_id: selectedSP.service_id,
+        date: selectedSP.date,
+        time: selectedSP.time
+      })
+    }).then(r => r.json())
+      .then(json => console.log('this is json', json))
+  }
+}

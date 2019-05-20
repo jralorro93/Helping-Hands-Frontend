@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {postBooking} from '../actions/actions';
 
 class ServiceProviderCard extends Component {
 
-  state = {
-    clickedSP: ''
-  }
 
   handleClick = (selectedSP) => {
     console.log("this is handleClick", selectedSP)
+    {this.props.postBooking(selectedSP)}
+
   }
 
   render() {
@@ -21,4 +22,4 @@ class ServiceProviderCard extends Component {
     )
   }
 }
-export default ServiceProviderCard
+export default connect(null, {postBooking})(ServiceProviderCard)
