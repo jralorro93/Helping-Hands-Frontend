@@ -1,14 +1,10 @@
-const initialState = {
-  users: []
-}
-
-
-export const signupReducer = (state = initialState, action) => {
+export const signupReducer = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_USER':
-      return {...state.users, user: action.payload}
+      return action.payload
     default:
       return state
   }
 }
 export default signupReducer
+//GOTTA CHANGE THIS FILE

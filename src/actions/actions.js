@@ -46,10 +46,20 @@ export const loginUser = (user, history) => {
       localStorage.setItem('token', user.jwt)
       dispatch({type: 'LOGIN_USER', payload: user })
       if (user.user.role === "client")  {
-        history.push('/ClientSide')
+        history.push('/clientProfile')
       } else {
-        history.push('/ServiceSide')
+        history.push('/spProfile')
       }
     })
+  }
+}
+
+
+//Gets services from api/v1/services
+export const getServices = () => {
+  return (dispatch) => {
+    return fetch('http://localhost:3000/api/v1/services')
+      .then(r => r.json())
+      .then(services => dispatch({type: "GET_SERVICES", payload: services}))
   }
 }
