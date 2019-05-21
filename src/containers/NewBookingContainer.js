@@ -10,7 +10,7 @@ class NewBookingContainer extends Component {
   state = {
     services: []
   }
-
+  //Renders Service Providers on page
   componentDidMount() {
     this.props.getServices()
       .then(servicesJSON => {

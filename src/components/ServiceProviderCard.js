@@ -21,8 +21,9 @@ class ServiceProviderCard extends Component {
   }
 }
   handleSubmit = () => {
-    console.log("this is handleClick", this.state )
-    // {this.props.postBooking(selectedSP)}
+    console.log("this is handleSubmit", this.props.service.id )
+    console.log("this is state ", this.state)
+    // {this.props.postBooking(selectedSP, dateAndTime)}
   }
 
 
@@ -34,7 +35,7 @@ class ServiceProviderCard extends Component {
           header={this.props.service.service_provider.first_name}
           meta={this.props.service.job}
           description={this.props.service.availability}
-        />}>
+        /> }>
 
          <Modal.Header>{this.props.service.job}</Modal.Header>
          <Modal.Content>

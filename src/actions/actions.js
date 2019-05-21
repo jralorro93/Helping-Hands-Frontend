@@ -23,7 +23,10 @@ export const postUser = (user) => {
        }})
      })
      .then(r => r.json())
-     .then(user => console.log(user) || dispatch(addUser(user)))
+     .then(user => {
+       //Needs working for rerouting
+       console.log(user) || dispatch(addUser(user))
+     })
   }
 }
 
@@ -65,7 +68,7 @@ export const getServices = () => {
 }
 
 //Posts a booking to api/v1/bookings
-export const postBooking = (selectedSP) => {
+export const postBooking = (selectedSP, dateAndTime) => {
   return (dispatch) => {
     return fetch('http://localhost:3000/api/v1/bookings', {
       method: 'POST',
@@ -76,8 +79,8 @@ export const postBooking = (selectedSP) => {
       body: JSON.stringify({
         client_id: selectedSP.client_id,
         service_id: selectedSP.service_id,
-        date: selectedSP.date,
-        time: selectedSP.time
+        date: dateAndTime.date,
+        time: dateAndTime.time
       })
     }).then(r => r.json())
       .then(json => console.log('this is json', json))
