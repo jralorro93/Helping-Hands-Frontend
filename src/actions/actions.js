@@ -27,8 +27,22 @@ export const postUser = (user) => {
      .then(user => {
        //Needs working for rerouting
        dispatch(addUser(user))
+       localStorage.setItem('token', user.jwt)
      })
   }
+}
+
+//KEEPS USER LOGGED IN
+export const loginUserFromToken = token => dispatch => {
+  fetch('http://localhost:3000/api/v1/reauthorized', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `BEARER ${token}`
+    }
+  }).then(r => r.json())
+    .then(user => dispatch(addUser(user)))
 }
 
 //Logs-in User with token
@@ -38,8 +52,7 @@ export const loginUser = (user, history) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `BEARER ${localStorage.getItem('token')}`
+        'Accept': 'application/json'
       },
       body: JSON.stringify({ user: {
         email: user.email,
@@ -48,7 +61,6 @@ export const loginUser = (user, history) => {
     })
     .then(r => r.json())
     .then(user => {
-      console.log(user.user.role)
       localStorage.setItem('token', user.jwt)
       dispatch(addUser(user))
 

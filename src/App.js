@@ -7,10 +7,16 @@ import Signup from './components/Signup'
 import { connect } from 'react-redux'
 import ClientProfile from './containers/ClientProfile'
 import SPSide from './containers/SPSide'
+import { loginUser, loginUserFromToken } from './actions/actions'
 
 class App extends Component {
 
-
+  componentDidMount() {
+    let token = localStorage.getItem("token")
+    if (token) {
+      this.props.loginUserFromToken(localStorage.getItem('token'))
+    }
+  }
 
 
   render() {
@@ -25,4 +31,4 @@ class App extends Component {
     )
   }
 }
-export default withRouter(connect()(App));
+export default withRouter(connect(null, {loginUser, loginUserFromToken})(App));

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClientApptContainer from './ClientApptContainer';
 import ClientSideBar from '../components/ClientSideBar';
 import NewBookingContainer from './NewBookingContainer'
+import { connect } from 'react-redux'
 
 class ClientSide extends Component {
   render() {
@@ -16,4 +17,8 @@ class ClientSide extends Component {
   }
 }
 
-export default ClientSide
+const mapStateToProps = state => {
+  return {currentUser: state.user}
+}
+
+export default connect(mapStateToProps)(ClientSide)
