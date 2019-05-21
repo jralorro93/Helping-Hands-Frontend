@@ -20,10 +20,10 @@ class ServiceProviderCard extends Component {
       this.setState({ [name]: value });
   }
 }
-  handleSubmit = () => {
+  handleSubmit = (selectedSP, dateAndTime) => {
     console.log("this is handleSubmit", this.props.service.id )
     console.log("this is state ", this.state)
-    // {this.props.postBooking(selectedSP, dateAndTime)}
+    {this.props.postBooking(selectedSP, dateAndTime)}
   }
 
 

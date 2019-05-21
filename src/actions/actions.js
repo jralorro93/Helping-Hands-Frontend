@@ -1,6 +1,6 @@
 // ACTIONS
 export const addUser = (newUserObj) => {
-  return {type: "ADD_USER", payload: newUserObj}
+  return {type: "LOGIN_USER", payload: newUserObj}
 }
 
 
@@ -12,7 +12,8 @@ export const postUser = (user) => {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
-         Accept: 'application/json'
+         'Accept': 'application/json',
+         'Authorization': `BEARER ${localStorage.getItem('token')}`
        },
        body: JSON.stringify({user: {
          first_name: user.first_name,
@@ -25,7 +26,7 @@ export const postUser = (user) => {
      .then(r => r.json())
      .then(user => {
        //Needs working for rerouting
-       console.log(user) || dispatch(addUser(user))
+       dispatch(addUser(user))
      })
   }
 }
@@ -37,7 +38,8 @@ export const loginUser = (user, history) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({ user: {
         email: user.email,
@@ -46,8 +48,10 @@ export const loginUser = (user, history) => {
     })
     .then(r => r.json())
     .then(user => {
+      console.log(user.user.role)
       localStorage.setItem('token', user.jwt)
-      dispatch({type: 'LOGIN_USER', payload: user })
+      dispatch(addUser(user))
+
       if (user.user.role === "client")  {
         history.push('/clientProfile')
       } else {
@@ -74,10 +78,10 @@ export const postBooking = (selectedSP, dateAndTime) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
-        client_id: selectedSP.client_id,
         service_id: selectedSP.service_id,
         date: dateAndTime.date,
         time: dateAndTime.time
