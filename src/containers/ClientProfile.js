@@ -4,6 +4,7 @@ import ClientSideBar from '../components/ClientSideBar';
 import NewBookingContainer from './NewBookingContainer'
 import { connect } from 'react-redux'
 import ClientPageContainer from './ClientPageContainer'
+import { logoutUser } from '../actions/actions'
 
 class ClientSide extends Component {
 
@@ -18,11 +19,16 @@ class ClientSide extends Component {
     })
   }
 
+  handleLogout = event => {
+    localStorage.removeItem("token")
+    this.props.logoutUser()
+  }
+
   render() {
     return (
       <div>
         Hi from Client Side
-        <ClientSideBar currentPage={this.state.currentPage} handleClick={this.handleClick}/>
+        <ClientSideBar currentPage={this.state.currentPage} handleClick={this.handleClick} handleLogout={this.handleLogout}/>
         <ClientPageContainer selectedPage={this.state.currentPage}/>
       </div>
     )
@@ -30,4 +36,4 @@ class ClientSide extends Component {
 }
 
 
-export default ClientSide
+export default connect(null, {logoutUser})(ClientSide)

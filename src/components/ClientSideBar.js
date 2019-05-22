@@ -20,6 +20,9 @@ class ClientSideBar extends Component{
             <li onClick={this.props.handleClick}>Settings</li>
           </ul>
         </div>
+        <div className='logout'>
+          <button onClick={this.props.handleLogout}>Log Out</button>
+        </div>
       </div>
     )
   }

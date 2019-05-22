@@ -2,6 +2,9 @@
 export const addUser = (newUserObj) => {
   return {type: "LOGIN_USER", payload: newUserObj}
 }
+export const logoutUser = () => {
+  return {type: "LOGOUT_USER"}
+}
 
 
 // THUNK
