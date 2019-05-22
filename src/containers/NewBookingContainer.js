@@ -23,7 +23,7 @@ class NewBookingContainer extends Component {
 
 
   render() {
-    {console.log(this.state.services)}
+    // {console.log(this.state.services)}
     return (
       <div>
         <h1>Make an appointment today!</h1>

@@ -20,15 +20,18 @@ class ServiceProviderCard extends Component {
       this.setState({ [name]: value });
   }
 }
-  handleSubmit = (selectedSP, dateAndTime) => {
-    console.log("this is handleSubmit", this.props.service.id )
-    console.log("this is state ", this.state)
-    {this.props.postBooking(selectedSP, dateAndTime)}
+  handleSubmit = () => {
+    let currentSP = this.props.service.id
+    let currentState = this.state
+    console.log('this is currentSP', currentSP, this.props.service)
+    console.log("this is from store", this.props.currentUser)
+    console.log('this is currentSTate', currentState)
+    let userId = this.props.currentUser.id
+    this.props.postBooking(currentSP, currentState, userId)
   }
 
 
   render() {
-
     return (
       <div>
         <Modal trigger={<Card
@@ -73,7 +76,12 @@ class ServiceProviderCard extends Component {
     )
   }
 }
-export default connect(null, {postBooking})(ServiceProviderCard)
+
+const mapStateToProps = state => {
+  return {currentUser: state.login.user}
+}
+
+export default connect(mapStateToProps, {postBooking})(ServiceProviderCard)
 
 // //////////////////////////
 // <Form.Group>

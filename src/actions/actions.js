@@ -84,7 +84,7 @@ export const getServices = () => {
 }
 
 //Posts a booking to api/v1/bookings
-export const postBooking = (selectedSP, dateAndTime) => {
+export const postBooking = (selectedSP, dateAndTime, clientId) => {
   return (dispatch) => {
     return fetch('http://localhost:3000/api/v1/bookings', {
       method: 'POST',
@@ -94,11 +94,12 @@ export const postBooking = (selectedSP, dateAndTime) => {
         'Authorization': `BEARER ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
-        service_id: selectedSP.service_id,
+        service_id: selectedSP,
+        client_id: clientId,
         date: dateAndTime.date,
         time: dateAndTime.time
       })
     }).then(r => r.json())
-      .then(json => console.log('this is json', json))
+      .then(newBooking => dispatch({type: "ADD_BOOKING", payload: newBooking}))
   }
 }
