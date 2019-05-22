@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import NewBookingContainer from '../containers/NewBookingContainer'
+
 
 class ClientSideBar extends Component{
+
+
+
   render() {
     return (
       <div>
@@ -12,9 +15,9 @@ class ClientSideBar extends Component{
         </div>
         <div className="bookingOptions">
           <ul>
-            <li> Make a booking </li>
-            <li> Current bookings </li>
-            <li> Settings </li>
+            <li onClick={this.props.handleClick}>Create a booking</li>
+            <li onClick={this.props.handleClick}>Current bookings</li>
+            <li onClick={this.props.handleClick}>Settings</li>
           </ul>
         </div>
       </div>

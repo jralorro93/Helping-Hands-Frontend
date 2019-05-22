@@ -4,26 +4,21 @@ import { Modal, Button, Image, Header, Icon} from 'semantic-ui-react'
 
 
 
-class ClientAppointments extends Component {
+class ClientAppointment extends Component {
 
 
   render() {
+    console.log('this is props: ', this.props)
     return (
       <div>
-        <Modal trigger={<Button>{this.props.appointment.service_id}</Button>}>
-           <Modal.Header>Profile Picture</Modal.Header>
+        <Modal trigger={<Button>{this.props.worker.first_name} {this.props.worker.last_name}</Button>}>
+           <Modal.Header>{this.props.worker.first_name} {this.props.worker.last_name}</Modal.Header>
            <Modal.Content image>
-             <Image wrapped size='medium' src='/images/wireframe/image.png' />
              <Modal.Description>
                <Header>Modal Header</Header>
                <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
              </Modal.Description>
            </Modal.Content>
-           <Modal.Actions>
-             <Button primary>
-               Proceed <Icon name='right chevron' />
-             </Button>
-           </Modal.Actions>
          </Modal>
       </div>
     )
@@ -32,4 +27,4 @@ class ClientAppointments extends Component {
 
 
 
-export default ClientAppointments
+export default ClientAppointment

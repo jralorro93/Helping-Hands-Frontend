@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 
-class SPSide extends Component {
+class SPProfile extends Component {
   render() {
     return (
       <div>
@@ -9,4 +9,4 @@ class SPSide extends Component {
     )
   }
 }
-export default SPSide
+export default SPProfile

@@ -6,10 +6,11 @@ import Login from './components/Login';
 import Signup from './components/Signup'
 import { connect } from 'react-redux'
 import ClientProfile from './containers/ClientProfile'
-import SPSide from './containers/SPSide'
+import SPProfile from './containers/SPProfile'
 import { loginUser, loginUserFromToken } from './actions/actions'
 
 class App extends Component {
+
 
   componentDidMount() {
     let token = localStorage.getItem("token")
@@ -26,7 +27,7 @@ class App extends Component {
         <Route exact path='/signup' component={Signup}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/clientProfile" component={ClientProfile} />
-        <Route exact path="/spProfile" component={SPSide}/>
+        <Route exact path="/spProfile" component={SPProfile}/>
       </Switch>
     )
   }
