@@ -8,7 +8,6 @@ class ClientAppointment extends Component {
 
 
   render() {
-    console.log('this is props from ClientAppointment: ', this.props.serviceProvider)
     return (
       <div>
         <Modal trigger={<Card

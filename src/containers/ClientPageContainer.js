@@ -8,6 +8,7 @@ class ClientPageContainer extends Component {
 
 
   render() {
+    console.log("this is current user: ", this.props.currentUser.id)
     let currentPage = null
     if(this.props.currentUser.id) {
       switch(this.props.selectedPage) {
