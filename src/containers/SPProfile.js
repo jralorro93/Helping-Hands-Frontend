@@ -6,6 +6,17 @@ import { logoutUser } from '../actions/actions'
 
 class SPProfile extends Component {
 
+  state = {
+    currentPage: 'Current Jobs'
+  }
+
+  handleClick = (event) => {
+    console.log('this is handleClick', event.target.innerText)
+    this.setState({
+      currentPage: event.target.innerText
+    })
+  }
+
   handleLogout = event => {
     localStorage.removeItem('token')
     this.props.logoutUser()
@@ -15,8 +26,8 @@ class SPProfile extends Component {
     return (
       <div>
         Hi from SP side
-        <SPSideBar handleLogout={this.handleLogout}/>
-        <SPPageContainer />
+        <SPSideBar currentPage={this.state.currentPage} handleLogout={this.handleLogout} handleClick={this.handleClick}/>
+        <SPPageContainer selectedPage={this.state.currentPage}/>
       </div>
     )
   }

@@ -11,9 +11,8 @@ class SPSideBar extends Component {
         </div>
         <div className="bookingOptions">
           <ul>
-            <li>Current Jobs</li>
-            <li>Edit Jobs</li>
-            <li>Settings</li>
+            <li onClick={this.props.handleClick}>Current Jobs</li>
+            <li onClick={this.props.handleClick}>Settings</li>
           </ul>
         </div>
         <div className='logout'>
