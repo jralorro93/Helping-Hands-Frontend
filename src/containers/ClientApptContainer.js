@@ -25,9 +25,11 @@ class ClientApptContainer extends Component {
   }
 
   render() {
-    console.log('hi from ClientApptContainer: ', this.state.serviceProviders.service_providers)
+    console.log('this is state: ', this.state)
+    console.log('this is store from ClientApptContainer', this.props)
     return (
         <div>
+          <h2>Hi from ClientApptContainer</h2>
           <h2>Current Bookings:</h2>
           <ul>
             {this.state.serviceProviders.service_providers === undefined ? null : (this.state.serviceProviders.service_providers.map(worker => {
@@ -46,18 +48,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(ClientApptContainer)
-          //
-          // {
-          //   this.setState({
-          //     serviceProviders: clientInfo.service_providers
-          //   }
-
-
-          // {this.props.appointments === undefined ? null : (
-          //     this.props.appointments.map(appointment => <ClientAppointments appointment={appointment}/>)
-          // )}
-
-
-          //{this.state.serviceProviders.service_providers.map(worker => {
-              // return <ClientAppointment serviceProvider={worker}/>
-            // })}

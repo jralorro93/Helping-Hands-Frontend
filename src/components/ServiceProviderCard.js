@@ -23,9 +23,9 @@ class ServiceProviderCard extends Component {
   handleSubmit = () => {
     let currentSP = this.props.service.id
     let currentState = this.state
-    console.log('this is currentSP', currentSP, this.props.service)
-    console.log("this is from store", this.props.currentUser)
-    console.log('this is currentSTate', currentState)
+    // console.log('this is currentSP', currentSP, this.props.service)
+    // console.log("this is from store", this.props.currentUser)
+    // console.log('this is currentSTate', currentState)
     let userId = this.props.currentUser.id
     this.props.postBooking(currentSP, currentState, userId)
   }
@@ -35,13 +35,15 @@ class ServiceProviderCard extends Component {
     return (
       <div>
         <Modal trigger={<Card
+          image={this.props.service.service_provider.imgUrl}
           header={this.props.service.service_provider.first_name}
           meta={this.props.service.job}
           description={this.props.service.availability}
         /> }>
 
          <Modal.Header>{this.props.service.job}</Modal.Header>
-         <Modal.Content>
+         <Modal.Content image>
+           <Image wrapped size='medium' src={this.props.service.service_provider.imgUrl} />
            <Modal.Description>
              <Header>{this.props.service.service_provider.first_name} {this.props.service.service_provider.last_name}</Header>
              <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
@@ -105,37 +107,6 @@ export default connect(mapStateToProps, {postBooking})(ServiceProviderCard)
 //    onChange={this.handleChange} />
 ////////////////////////////
 
-
-// <DateInput
-//   name="date"
-//   placeholder="Date"
-//   value={this.state.date}
-//   iconPosition="left"
-//   onChange={this.handleChange}
-// />
-// <TimeInput
-//   name="time"
-//   placeholder="Time"
-//   value={this.state.time}
-//   iconPosition="left"
-//   onChange={this.handleChange}
-// />
-// <DateTimeInput
-//   name="dateTime"
-//   placeholder="Date Time"
-//   value={this.state.dateTime}
-//   iconPosition="left"
-//   onChange={this.handleChange}
-// />
-// <DatesRangeInput
-//   name="datesRange"
-//   placeholder="From - To"
-//   value={this.state.datesRange}
-//   iconPosition="left"
-//   onChange={this.handleChange}
-// />
-
-// <button onClick={() => this.handleClick(this.props.service)}>Book Me!</button>
 
 
 // Part of card?
