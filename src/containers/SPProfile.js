@@ -25,7 +25,6 @@ class SPProfile extends Component {
   render() {
     return (
       <div>
-        Hi from SP side
         <SPSideBar currentPage={this.state.currentPage} handleLogout={this.handleLogout} handleClick={this.handleClick}/>
         <SPPageContainer selectedPage={this.state.currentPage}/>
       </div>

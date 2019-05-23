@@ -8,19 +8,20 @@ class ClientAppointment extends Component {
 
 
   render() {
-    // console.log('this is props: ', this.props)
+    console.log('this is props from ClientAppointment: ', this.props.serviceProvider)
     return (
       <div>
         <Modal trigger={<Card
-          image={this.props.worker.imgUrl}
-          header={this.props.worker.first_name}
-          meta={this.props.worker.last_name}
+          image={this.props.serviceProvider.imgUrl}
+          header={this.props.serviceProvider.first_name}
+          meta={this.props.serviceProvider.last_name}
         />}>
-           <Modal.Header>{this.props.worker.first_name} {this.props.worker.last_name}</Modal.Header>
+           <Modal.Header>{this.props.serviceProvider.first_name} {this.props.serviceProvider.last_name}</Modal.Header>
            <Modal.Content image>
+             <Image wrapped size='small' src={this.props.serviceProvider.imgUrl} />
              <Modal.Description>
-               <Header>Modal Header</Header>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed sagittis sapien.</p>
+               <Header>Date and Time:</Header>
+               <p>{this.props.appointment.date} at {this.props.appointment.time}</p>
              </Modal.Description>
            </Modal.Content>
          </Modal>

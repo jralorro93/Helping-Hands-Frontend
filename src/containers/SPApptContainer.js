@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SPCurrentBookings from '../components/SPCurrentBookings'
+import SPCurrentBooking from '../components/SPCurrentBooking'
 
 
 class SPApptContainer extends Component {
@@ -15,9 +15,8 @@ class SPApptContainer extends Component {
         <ul>
           {this.props.currentUser.bookings.map(booking => {
             let client = this.props.currentUser.clients.find(client => client.id === booking.client_id)
-            return <SPCurrentBookings booking={booking} client={client} />
-          }
-          )}
+            return <SPCurrentBooking booking={booking} client={client} />
+          })}
         </ul>
       </div>
     )

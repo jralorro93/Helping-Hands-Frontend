@@ -5,25 +5,6 @@ import ClientAppointment from '../components/ClientAppointment';
 
 class ClientApptContainer extends Component {
 
-  state = {
-    serviceProviders: []
-  }
-
-
-//GET Fetch request from current user to retrieve service providers
-//Only works because I used a Ternary in parent to check to see if there was a current user. Once it rendered to have a current
-//user, then there is a current user available in child component
-  componentDidMount(){
-    const userId = this.props.currentUser.id
-    fetch(`http://localhost:3000/api/v1/users/${userId}`)
-      .then(r => r.json())
-      .then(clientInfo => {
-        this.setState({
-          serviceProviders: clientInfo
-        })
-      })
-  }
-
   render() {
     console.log('this is state: ', this.state)
     console.log('this is store from ClientApptContainer', this.props)
@@ -32,9 +13,10 @@ class ClientApptContainer extends Component {
           <h2>Hi from ClientApptContainer</h2>
           <h2>Current Bookings:</h2>
           <ul>
-            {this.state.serviceProviders.service_providers === undefined ? null : (this.state.serviceProviders.service_providers.map(worker => {
-              return <ClientAppointment worker={worker} />})
-            )}
+            {this.props.currentUser.appointments.map(appointment => {
+              let sp = this.props.currentUser.service_providers.find(sp => sp.id === appointment.service_provider_id)
+              return <ClientAppointment serviceProvider={sp} appointment={appointment}/>
+            })}
           </ul>
         </div>
     )
@@ -48,3 +30,8 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(ClientApptContainer)
+
+
+// {this.state.serviceProviders.service_providers === undefined ? null : (this.state.serviceProviders.service_providers.map(worker => {
+//   return <ClientAppointment worker={worker} />})
+// )}

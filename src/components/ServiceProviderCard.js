@@ -20,6 +20,8 @@ class ServiceProviderCard extends Component {
       this.setState({ [name]: value });
   }
 }
+
+  //ADD CLOSE STATE IN HERE TO CLOSE MODAL
   handleSubmit = () => {
     let currentSP = this.props.service.id
     let currentState = this.state
@@ -46,7 +48,7 @@ class ServiceProviderCard extends Component {
            <Image wrapped size='medium' src={this.props.service.service_provider.imgUrl} />
            <Modal.Description>
              <Header>{this.props.service.service_provider.first_name} {this.props.service.service_provider.last_name}</Header>
-             <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
+             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed sagittis sapien.</p>
            </Modal.Description>
            <Form>
             <Form.Group>
