@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 
-
-class ClientSideBar extends Component{
-
-
-
+class SPSideBar extends Component {
   render() {
     return (
       <div>
         <div className="profileSideBar">
-          Client Side SideBar
+          SP Side SideBar
           Welcome to HH!
           Pic here
         </div>
         <div className="bookingOptions">
           <ul>
-            <li onClick={this.props.handleClick}>Create a booking</li>
-            <li onClick={this.props.handleClick}>Current bookings</li>
-            <li onClick={this.props.handleClick}>Settings</li>
+            <li>Current Jobs</li>
+            <li>Edit Jobs</li>
+            <li>Settings</li>
           </ul>
         </div>
         <div className='logout'>
@@ -27,4 +23,4 @@ class ClientSideBar extends Component{
     )
   }
 }
-export default ClientSideBar
+export default SPSideBar

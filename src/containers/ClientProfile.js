@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import ClientApptContainer from './ClientApptContainer';
 import ClientSideBar from '../components/ClientSideBar';
-import NewBookingContainer from './NewBookingContainer'
 import { connect } from 'react-redux'
 import ClientPageContainer from './ClientPageContainer'
 import { logoutUser } from '../actions/actions'
 
-class ClientSide extends Component {
+class ClientProfile extends Component {
 
   state = {
     currentPage: 'Create a booking'
@@ -36,4 +34,4 @@ class ClientSide extends Component {
 }
 
 
-export default connect(null, {logoutUser})(ClientSide)
+export default connect(null, {logoutUser})(ClientProfile)
