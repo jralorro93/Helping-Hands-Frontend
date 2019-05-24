@@ -10,7 +10,6 @@ class SPApptContainer extends Component {
     console.log('this is mapStateToProps: ', this.props)
     return (
       <div>
-        <h2>Hi from SPApptContainer</h2>
         <h2>Current bookings:</h2>
         <ul>
           {this.props.currentUser.bookings.map(booking => {

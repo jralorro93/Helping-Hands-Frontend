@@ -26,7 +26,7 @@ class NewBookingContainer extends Component {
     // {console.log(this.state.services)}
     return (
       <div>
-        <h1>Make an appointment today!</h1>
+        <h1 className="MakeAppt">Make an appointment today!</h1>
         <h3>Services: </h3>
         {this.state.services.map(service => <ServiceProviderCard key={service.service_provider.name} service={service}/>)}
       </div>

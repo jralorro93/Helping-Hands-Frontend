@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {postBooking} from '../actions/actions';
 import { Card, Icon, Grid, Image, Modal, Button, Header, Form, Input, TextArea, Select } from 'semantic-ui-react';
@@ -12,20 +12,27 @@ class ServiceProviderCard extends Component {
   state = {
     date: '',
     time: '',
-    open: false
+    modalOpen: false
   };
 
-  show = dimmer => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
+  handleOpen = () => this.setState({ modalOpen: true }, () => console.log('this is modalOpen:', this.state.modalOpen))
+  handleClose = () => this.setState({ modalOpen: false }, () => console.log('this is modalOpen:', this.state.modalOpen))
+
+
 
   handleChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
+    }
   }
-}
 
-  //ADD CLOSE STATE IN HERE TO CLOSE MODAL
-  handleSubmit = () => {
+  handleCloseModal(event) {
+    event.preventDefault()
+    this.handleClose()
+  }
+
+
+  handleSubmit = (event) => {
     let currentSP = this.props.service.id
     let currentState = {date: this.state.date, time: this.state.time}
     // console.log('this is currentSP', currentSP, this.props.service)
@@ -33,55 +40,55 @@ class ServiceProviderCard extends Component {
     // console.log('this is currentSTate', currentState)
     let userId = this.props.currentUser.id
     this.props.postBooking(currentSP, currentState, userId)
-    // this.close()
+    this.handleCloseModal(event)
   }
 
   render() {
     const { open, dimmer } = this.state
 
     return (
-      <div>
-        <Card.Group itemsPerRow={6}>
-            <Modal trigger={<Card
-              image={this.props.service.service_provider.imgUrl}
-              header={this.props.service.service_provider.first_name}
-              meta={this.props.service.job}
-              description={this.props.service.availability}
-            /> }>
-             <Modal.Header>{this.props.service.job}</Modal.Header>
-             <Modal.Content image>
-               <Image wrapped size='medium' src={this.props.service.service_provider.imgUrl} />
-               <Modal.Description>
-                 <Header>{this.props.service.service_provider.first_name} {this.props.service.service_provider.last_name}</Header>
-                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed sagittis sapien.</p>
-               </Modal.Description>
-               <Form>
-                <Form.Group>
-                  <DateInput
-                    name="date"
-                    placeholder="Date"
-                    value={this.state.date}
-                    iconPosition="left"
-                    onChange={this.handleChange}
-                  />
-                  <TimeInput
-                    name="time"
-                    placeholder="Time"
-                    value={this.state.time}
-                    iconPosition="left"
-                    onChange={this.handleChange}
-                  />
-                 </Form.Group>
-               </Form>
-             </Modal.Content>
-             <Modal.Actions>
-               <Button type="submit" content="Save" onClick={this.handleSubmit}>
-                 Book Now! <Icon name='right chevron' />
-               </Button>
-             </Modal.Actions>
-           </Modal>
-         </Card.Group>
-      </div>
+      <Fragment>
+        <Modal onClose={this.handleClose} open={this.state.modalOpen}
+          trigger={<Card
+          onClick={() => this.handleOpen()}
+          image={this.props.service.service_provider.imgUrl}
+          header={this.props.service.service_provider.first_name}
+          meta={this.props.service.job}
+          description={this.props.service.availability}
+        /> }>
+         <Modal.Header>{this.props.service.job}</Modal.Header>
+         <Modal.Content image>
+           <Image wrapped size='medium' src={this.props.service.service_provider.imgUrl} />
+           <Modal.Description>
+             <Header>{this.props.service.service_provider.first_name} {this.props.service.service_provider.last_name}</Header>
+             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed sagittis sapien.</p>
+           </Modal.Description>
+           <Form>
+            <Form.Group>
+              <DateInput
+                name="date"
+                placeholder="Date"
+                value={this.state.date}
+                iconPosition="left"
+                onChange={this.handleChange}
+              />
+              <TimeInput
+                name="time"
+                placeholder="Time"
+                value={this.state.time}
+                iconPosition="left"
+                onChange={this.handleChange}
+              />
+             </Form.Group>
+           </Form>
+         </Modal.Content>
+         <Modal.Actions>
+           <Button type="submit" color='green'content="Save" onClick={(event) => this.handleSubmit(event)}>
+             Book Now! <Icon name='right chevron' />
+           </Button>
+         </Modal.Actions>
+       </Modal>
+     </Fragment>
     )
   }
 }

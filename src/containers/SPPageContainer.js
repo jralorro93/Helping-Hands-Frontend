@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 class SPPageContainer extends Component {
   render() {
+    console.log('this is currentUser: ', this.props.currentUser.id)
     let currentPage = null
     if(this.props.currentUser.id) {
       switch(this.props.selectedPage) {

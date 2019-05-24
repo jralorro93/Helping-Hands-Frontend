@@ -31,3 +31,25 @@
     transform: rotate(360deg);
   }
 }
+
+a.ui.card {
+  width: 320px;
+  padding: 10px;
+  border: 1px solid black;
+  margin: 0;
+  float: left;
+  background-color: white;
+  text-align: center;
+}
+
+.ui.card>.image  {
+  height: 600px;
+}
+
+div.HHlogo {
+  text-align: center;
+}
+
+h1.MakeAppt {
+  font-variant: small-caps;
+}

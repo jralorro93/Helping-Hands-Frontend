@@ -1,32 +1,26 @@
 import React, { Component} from 'react';
 import SPSideBar from '../components/SPSideBar';
-import SPPageContainer from './SPPageContainer';
+// import SPPageContainer from './SPPageContainer';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/actions'
 
 class SPProfile extends Component {
 
-  state = {
-    currentPage: 'Current Jobs'
-  }
 
-  handleClick = (event) => {
-    console.log('this is handleClick', event.target.innerText)
-    this.setState({
-      currentPage: event.target.innerText
-    })
-  }
 
   handleLogout = event => {
     localStorage.removeItem('token')
     this.props.logoutUser()
+    this.props.history.push('/')
   }
 
   render() {
     return (
       <div>
-        <SPSideBar currentPage={this.state.currentPage} handleLogout={this.handleLogout} handleClick={this.handleClick}/>
-        <SPPageContainer selectedPage={this.state.currentPage}/>
+        <div className='HHlogo'>
+          Heling Hands logo goes here
+        </div>
+        <SPSideBar handleLogout={this.handleLogout} />
       </div>
     )
   }

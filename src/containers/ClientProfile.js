@@ -19,9 +19,10 @@ class ClientProfile extends Component {
   render() {
     return (
       <div>
-        Hi from Client Side
+        <div className='HHlogo'>
+          Helping Hands
+        </div>
         <ClientSideBar  handleLogout={this.handleLogout}/>
-
       </div>
     )
   }
