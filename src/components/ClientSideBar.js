@@ -38,11 +38,14 @@ class ClientSideBar extends Component{
             <Icon name='settings' id='Settings'onClick={this.handleClick}/>
             Settings
           </Menu.Item>
+          <Menu.Item as='a' id='Log out' onClick={this.props.handleLogout}>
+            <Icon name='log out' id='Log out' onClick={this.props.handleLogout}/>
+            Log out
+          </Menu.Item>
         </Sidebar>
 
         <Sidebar.Pusher>
           <Segment basic>
-            <Header as='h3'>Application Content</Header>
             <ClientPageContainer selectedPage={this.state.currentPage}/>
           </Segment>
         </Sidebar.Pusher>
@@ -51,6 +54,7 @@ class ClientSideBar extends Component{
   }
 }
 export default ClientSideBar
+
 
 // <div>
 //   <div className="profileSideBar">

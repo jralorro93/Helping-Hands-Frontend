@@ -13,6 +13,7 @@ class ClientProfile extends Component {
   handleLogout = event => {
     localStorage.removeItem("token")
     this.props.logoutUser()
+    this.props.history.push('/')
   }
 
   render() {

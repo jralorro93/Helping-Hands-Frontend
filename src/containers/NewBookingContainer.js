@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getServices } from '../actions/actions';
 import ServiceProviderCard from '../components/ServiceProviderCard';
-
+import { Grid } from 'semantic-ui-react';
 
 class NewBookingContainer extends Component {
 
