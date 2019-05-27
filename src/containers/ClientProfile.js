@@ -3,6 +3,7 @@ import ClientSideBar from '../components/ClientSideBar';
 import { connect } from 'react-redux'
 // import ClientPageContainer from './ClientPageContainer'
 import { logoutUser } from '../actions/actions'
+import { Image } from 'semantic-ui-react'
 
 class ClientProfile extends Component {
 
@@ -19,9 +20,6 @@ class ClientProfile extends Component {
   render() {
     return (
       <div>
-        <div className='HHlogo'>
-          Helping Hands
-        </div>
         <ClientSideBar  handleLogout={this.handleLogout}/>
       </div>
     )

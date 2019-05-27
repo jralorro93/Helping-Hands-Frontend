@@ -81,3 +81,29 @@ h1.ui.header.headerText {
 h2.ui.header.headerText {
   color: white;
 }
+
+h1.JoinUs {
+  text-align: center;
+}
+
+div.SignUpForm {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-top: -184px;
+  margin-left: -188px;
+}
+
+div.inline.fields.signUpRadio {
+  text-align: center;
+}
+
+div.SignUpPage {
+  background-image: url('./assests/images/blue-sky.jpg');
+  height: 850px;
+}
+
+/* div.SignUpForm {
+  background-image: url('./assests/images/butterfly.jpg');
+  max-height: 100%;
+} */

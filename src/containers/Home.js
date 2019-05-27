@@ -4,13 +4,32 @@ import { connect } from 'react-redux'
 import NavBar from '../components/NavBar'
 import Signup from '../components/Signup'
 import { loginUser } from '../actions/actions';
-import { Container, Header, Button, Icon, Image, Grid, Segment } from 'semantic-ui-react'
+import { Container, Header, Button, Icon, Image, Grid, Segment, Form } from 'semantic-ui-react'
 
 class Home extends Component {
 
-  handleSignup = (event) => {
-    console.log('this is signup', event)
+
+  state = {
+    email: '',
+    password: ''
   }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleLogin = (event, userObj) => {
+    event.preventDefault();
+    this.props.loginUser(userObj, this.props.history)
+  }
+
+  handleMoveToSignup = () => {
+    this.props.history.push('/signup')
+  }
+
+
 
   render() {
     return (
@@ -26,7 +45,7 @@ class Home extends Component {
               <Header
                 className='headerText'
                 as='h2'
-                content='Help us, help you.'
+                content='Help Us, Help You.'
               />
             </Container>
           </div>
@@ -35,19 +54,17 @@ class Home extends Component {
           <Grid celled='internally' columns='equal' stackable>
             <Grid.Row textAlign='center'>
               <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                <Header as='h3' style={{ fontSize: '2em' }}>
-                  "What a Company"
-                </Header>
-                <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
+                <h1>Login</h1>
+                <form onSubmit={(event) => this.handleLogin(event, this.state)}>
+                  <label>Email: </label>
+                  <Form.Input icon='user' iconPosition='left' label='Email'  placeholder='Email' type="email" name="email" value={this.state.email} onChange={this.handleChange} /><br/>
+                  <label>Password: </label>
+                  <Form.Input icon='lock' iconPosition='left' label='Password' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                  <input type="submit" />
+                </form>
               </Grid.Column>
-              <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                <Header as='h3' style={{ fontSize: '2em' }}>
-                  "I shouldn't have gone with their competitor."
-                </Header>
-                <p style={{ fontSize: '1.33em' }}>
-                  <Image avatar src='/images/avatar/large/nan.jpg' />
-                  <b>Nan</b> Chief Fun Officer Acme Toys
-                </p>
+              <Grid.Column verticalAlign='middle'>
+                <Button content='Sign up' icon='signup' size='big' onClick={this.handleMoveToSignup} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -58,3 +75,5 @@ class Home extends Component {
   }
 }
 export default withRouter(connect(null, {loginUser})(Home))
+// <Form.Input icon='user' iconPosition='left' label='Username' placeholder='Username' />
+// <Form.Input icon='lock' iconPosition='left' label='Password' type='password' />

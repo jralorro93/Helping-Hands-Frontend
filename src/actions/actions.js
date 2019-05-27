@@ -9,7 +9,7 @@ export const logoutUser = () => {
 
 // THUNK
 //CREATES NEW USER FOR SIGNUP
-export const postUser = (user) => {
+export const postUser = (user, history) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/users`, {
        method: 'POST',
@@ -31,6 +31,11 @@ export const postUser = (user) => {
        //Needs working for rerouting
        dispatch(addUser(user))
        localStorage.setItem('token', user.jwt)
+       if (user.user.role === "client")  {
+         history.push('/clientProfile')
+       } else {
+         history.push('/spProfile')
+       }
      })
   }
 }
