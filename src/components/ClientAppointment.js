@@ -6,6 +6,11 @@ import { Modal, Button, Image, Header, Icon, Card} from 'semantic-ui-react'
 
 class ClientAppointment extends Component {
 
+  handleCancel = () => {
+    console.log('this is handleCancel')
+  }
+
+
 
   render() {
     return (
@@ -23,6 +28,9 @@ class ClientAppointment extends Component {
                <p>{this.props.appointment.date} at {this.props.appointment.time}</p>
              </Modal.Description>
            </Modal.Content>
+           <Modal.Actions>
+             <Button negative onClick={this.handleCancel}>Cancel Appointment</Button>
+           </Modal.Actions>
          </Modal>
       </div>
     )
