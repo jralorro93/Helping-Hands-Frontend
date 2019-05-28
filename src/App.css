@@ -31,3 +31,87 @@
     transform: rotate(360deg);
   }
 }
+
+a.ui.card {
+  width: 320px;
+  padding: 10px;
+  border: 1px solid black;
+  margin: 0;
+  float: left;
+  background-color: white;
+  text-align: center;
+}
+
+.ui.card>.image  {
+  height: 600px;
+}
+
+div.HHlogo {
+  text-align: center;
+}
+
+h1.MakeAppt {
+  font-variant: small-caps;
+}
+
+div.headerWithText {
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./assests/images/desktop2.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+div.headerText {
+  text-align: center;
+  text-decoration-color: #ff0000;
+
+
+}
+
+h1.ui.header.headerText {
+  color: white;
+  text-decoration: underline;
+  padding: 70px 0;
+  text-shadow: 4px 3px #808080;
+  font-size: 50px;
+}
+
+h2.ui.header.headerText {
+  color: white;
+}
+
+h1.JoinUs {
+  text-align: center;
+}
+
+div.SignUpForm {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-top: -184px;
+  margin-left: -188px;
+}
+
+div.inline.fields.signUpRadio {
+  text-align: center;
+}
+
+div.SignUpPage {
+  background-image: url('./assests/images/blue-sky.jpg');
+  height: 850px;
+}
+
+h2.CurrentBookings {
+  text-align: center;
+}
+
+h1.MakeAppt {
+  text-align: center;
+}
+
+/* div.SignUpForm {
+  background-image: url('./assests/images/butterfly.jpg');
+  max-height: 100%;
+} */
