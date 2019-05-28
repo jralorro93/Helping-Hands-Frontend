@@ -103,6 +103,14 @@ div.SignUpPage {
   height: 850px;
 }
 
+h2.CurrentBookings {
+  text-align: center;
+}
+
+h1.MakeAppt {
+  text-align: center;
+}
+
 /* div.SignUpForm {
   background-image: url('./assests/images/butterfly.jpg');
   max-height: 100%;

@@ -6,6 +6,10 @@ export const logoutUser = () => {
   return {type: "LOGOUT_USER"}
 }
 
+export const deleteBooking = (booking) => {
+  return {type: "DELETE_BOOKING", payload: booking }
+}
+
 
 // THUNK
 //CREATES NEW USER FOR SIGNUP
@@ -109,5 +113,20 @@ export const postBooking = (selectedSP, dateAndTime, clientId) => {
       })
     }).then(r => r.json())
       .then(newBooking => dispatch({type: "ADD_BOOKING", payload: newBooking}))
+  }
+}
+
+export const deleteBookingRequest = (appt) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/bookings/${appt.id}`, {
+      method: 'DELETE',
+      header: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(appt)
+    }).then(r => dispatch(deleteBooking(appt)))
+
   }
 }

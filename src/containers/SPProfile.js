@@ -17,9 +17,6 @@ class SPProfile extends Component {
   render() {
     return (
       <div>
-        <div className='HHlogo'>
-          Heling Hands logo goes here
-        </div>
         <SPSideBar handleLogout={this.handleLogout} />
       </div>
     )

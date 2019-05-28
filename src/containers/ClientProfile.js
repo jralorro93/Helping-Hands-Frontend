@@ -7,10 +7,6 @@ import { Image } from 'semantic-ui-react'
 
 class ClientProfile extends Component {
 
-
-
-
-
   handleLogout = event => {
     localStorage.removeItem("token")
     this.props.logoutUser()

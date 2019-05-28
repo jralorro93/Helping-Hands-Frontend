@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ClientAppt from '../components/ClientAppt';
 import { connect } from 'react-redux';
 import ClientAppointment from '../components/ClientAppointment';
 
@@ -10,8 +9,7 @@ class ClientApptContainer extends Component {
     console.log('this is store from ClientApptContainer', this.props)
     return (
         <div>
-          <h2>Hi from ClientApptContainer</h2>
-          <h2>Current Bookings:</h2>
+          <h2 className='CurrentBookings'>Current Bookings:</h2>
           <ul>
             {this.props.currentUser.appointments.map(appointment => {
               let sp = this.props.currentUser.service_providers.find(sp => sp.id === appointment.service_provider_id)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Image, Header, Icon, Card} from 'semantic-ui-react'
-
+import { connect } from 'react-redux';
+import { deleteBookingRequest, deleteBooking } from '../actions/actions';
 
 
 
@@ -10,9 +11,18 @@ class ClientAppointment extends Component {
     console.log('this is handleCancel')
   }
 
+  handleEdit = (event, appt) => {
+    console.log('this is handleEdit', appt)
+  }
+
+  handleDelete = (appt) => {
+    this.props.deleteBookingRequest(appt)
+  }
+
 
 
   render() {
+    console.log('this is props from store: ', this.props.appointment.id)
     return (
       <div>
         <Modal trigger={<Card
@@ -29,7 +39,8 @@ class ClientAppointment extends Component {
              </Modal.Description>
            </Modal.Content>
            <Modal.Actions>
-             <Button negative onClick={this.handleCancel}>Cancel Appointment</Button>
+             <Button onClick={(event) => this.handleEdit(event)}>Edit Appointment</Button>
+             <Button negative onClick={() => this.handleDelete(this.props.appointment)}>Cancel Appointment</Button>
            </Modal.Actions>
          </Modal>
       </div>
@@ -39,4 +50,4 @@ class ClientAppointment extends Component {
 
 
 
-export default ClientAppointment
+export default connect(null, { deleteBookingRequest })(ClientAppointment)
