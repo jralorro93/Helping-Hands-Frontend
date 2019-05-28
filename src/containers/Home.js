@@ -64,7 +64,7 @@ class Home extends Component {
                 </form>
               </Grid.Column>
               <Grid.Column verticalAlign='middle'>
-                <Button content='Sign up' icon='signup' size='big' onClick={this.handleMoveToSignup} />
+                <Button color='blue' content='Sign up' icon='signup' size='big' onClick={this.handleMoveToSignup} />
               </Grid.Column>
             </Grid.Row>
           </Grid>

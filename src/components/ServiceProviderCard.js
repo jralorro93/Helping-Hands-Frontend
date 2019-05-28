@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {postBooking} from '../actions/actions';
 import { Card, Icon, Grid, Image, Modal, Button, Header, Form, Input, TextArea, Select } from 'semantic-ui-react';
-import { DateInput, TimeInput, DateTimeInput, DatesRangeInput } from 'semantic-ui-calendar-react';
+import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 
 
@@ -45,7 +45,7 @@ class ServiceProviderCard extends Component {
 
   render() {
     const { open, dimmer } = this.state
-
+    console.log("this is SPC: ", this.props)
     return (
       <Fragment>
         <Modal onClose={this.handleClose} open={this.state.modalOpen}
