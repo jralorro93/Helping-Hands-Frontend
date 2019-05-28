@@ -7,6 +7,14 @@ import { deleteBookingRequest, deleteBooking } from '../actions/actions';
 
 class ClientAppointment extends Component {
 
+  state = {
+    modalOpen: false
+  }
+
+  handleOpen = () => this.setState({ modalOpen: true }, () => console.log('this is modalOpen:', this.state.modalOpen))
+  handleClose = () => this.setState({ modalOpen: false }, () => console.log('this is modalOpen:', this.state.modalOpen))
+
+
   handleCancel = () => {
     console.log('this is handleCancel')
   }
@@ -17,6 +25,7 @@ class ClientAppointment extends Component {
 
   handleDelete = (appt) => {
     this.props.deleteBookingRequest(appt)
+    this.handleClose()
   }
 
 
@@ -25,10 +34,12 @@ class ClientAppointment extends Component {
     console.log('this is props from store: ', this.props)
     return (
       <div>
-        <Modal trigger={<Card
-          image={this.props.serviceProvider.imgUrl}
-          header={this.props.serviceProvider.first_name}
-          meta={this.props.serviceProvider.last_name}
+        <Modal onClose={this.handleClose} open={this.state.modalOpen}
+          trigger={<Card
+            onClick={() => this.handleOpen() }
+            image={this.props.serviceProvider.imgUrl}
+            header={this.props.serviceProvider.first_name}
+            meta={this.props.serviceProvider.last_name}
         />}>
            <Modal.Header>{this.props.serviceProvider.first_name} {this.props.serviceProvider.last_name}</Modal.Header>
            <Modal.Content image>

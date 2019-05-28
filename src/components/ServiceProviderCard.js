@@ -50,11 +50,11 @@ class ServiceProviderCard extends Component {
       <Fragment>
         <Modal onClose={this.handleClose} open={this.state.modalOpen}
           trigger={<Card
-          onClick={() => this.handleOpen()}
-          image={this.props.service.service_provider.imgUrl}
-          header={this.props.service.service_provider.first_name}
-          meta={this.props.service.job}
-          description={this.props.service.availability}
+            onClick={() => this.handleOpen()}
+            image={this.props.service.service_provider.imgUrl}
+            header={this.props.service.service_provider.first_name}
+            meta={this.props.service.job}
+            description={this.props.service.availability}
         /> }>
          <Modal.Header>{this.props.service.job}</Modal.Header>
          <Modal.Content image>
