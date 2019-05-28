@@ -5,7 +5,6 @@ import ClientAppointment from '../components/ClientAppointment';
 class ClientApptContainer extends Component {
 
   render() {
-    console.log('this is state: ', this.state)
     console.log('this is store from ClientApptContainer', this.props)
     return (
         <div>
