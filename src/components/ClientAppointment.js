@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Image, Header, Icon, Card, Form, Divider} from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { deleteBookingRequest, deleteBooking } from '../actions/actions';
+import { deleteBookingRequest, deleteBooking, patchAppt} from '../actions/actions';
 import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 
@@ -37,11 +37,11 @@ class ClientAppointment extends Component {
 
   handleEdit = (event) => {
     event.preventDefault()
-    console.log('this is handleEdit', this.state)
+    console.log('this is handleEdit', this.props)
     let currentDate = this.state.date
     let currenTime = this.state.time
-    let currentUser = this.props.currentUser.login.user.id
-
+    let currentSP = this.props.appointment.id
+    this.props.patchAppt(currentSP, currentDate, currenTime)
   }
 
 
@@ -49,7 +49,6 @@ class ClientAppointment extends Component {
 
 
   render() {
-    console.log('this is props from store: ', this.props)
     return (
       <div>
         <Modal onClose={this.handleClose} open={this.state.modalOpen}
@@ -104,4 +103,4 @@ const mapStateToProps = state => {
   return {currentUser: state}
 }
 
-export default connect(mapStateToProps, { deleteBookingRequest })(ClientAppointment)
+export default connect(mapStateToProps, { deleteBookingRequest, patchAppt})(ClientAppointment)

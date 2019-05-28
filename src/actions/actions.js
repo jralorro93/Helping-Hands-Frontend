@@ -65,7 +65,10 @@ export const loginUserFromToken = token => dispatch => {
       'Authorization': `BEARER ${token}`
     }
   }).then(r => r.json())
-    .then(user => dispatch(addUser(user)))
+    .then(user => {
+      console.log(user)
+      dispatch(addUser(user))
+    })
 }
 
 //Logs-in User with token
@@ -123,7 +126,10 @@ export const postBooking = (selectedSP, dateAndTime, clientId) => {
         time: dateAndTime.time
       })
     }).then(r => r.json())
-      .then(newBooking => dispatch({type: "ADD_BOOKING", payload: newBooking}))
+      .then(newBooking => {
+        console.log(newBooking)
+        dispatch({type: "ADD_BOOKING", payload: newBooking})
+      })
   }
 }
 
@@ -176,5 +182,24 @@ export const patchUserInfo = (id, firstName, lastName, email, password) => {
       })
     }).then(r => r.json())
       .then(data => dispatch(editInfo({first_name: firstName, last_name: lastName, email: email, password: password})))
+  }
+}
+
+//EDIT APPOINTMENT
+export const patchAppt = (id, date, time) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/bookings/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        date: date,
+        time: time
+      })
+    }).then(r => r.json())
+      .then(data => dispatch(editAppt({date: date, time: time})))
   }
 }
