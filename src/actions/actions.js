@@ -10,6 +10,17 @@ export const deleteBooking = (booking) => {
   return {type: "DELETE_BOOKING", payload: booking }
 }
 
+export const editImage = image => {
+  return {type: "EDIT_IMAGE", payload: image}
+}
+
+export const editInfo = info => {
+  return {type: 'EDIT_INFO', payload: info}
+}
+export const editAppt = info => {
+  return {type: 'EDIT_INFO', payload: info}
+}
+
 
 // THUNK
 //CREATES NEW USER FOR SIGNUP
@@ -116,6 +127,7 @@ export const postBooking = (selectedSP, dateAndTime, clientId) => {
   }
 }
 
+//DELETES A BOOKING
 export const deleteBookingRequest = (appt) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/bookings/${appt.id}`, {
@@ -127,6 +139,42 @@ export const deleteBookingRequest = (appt) => {
       },
       body: JSON.stringify(appt)
     }).then(r => dispatch(deleteBooking(appt)))
+  }
+}
 
+//EDIT IMAGE
+export const patchImageUrl = (imgUrl, id) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({imgUrl: imgUrl})
+    }).then(r => r.json())
+      .then(data => dispatch(editImage(imgUrl)))
+  }
+}
+
+//EDIT PERSONAL INFO
+export const patchUserInfo = (id, firstName, lastName, email, password) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password
+      })
+    }).then(r => r.json())
+      .then(data => dispatch(editInfo({first_name: firstName, last_name: lastName, email: email, password: password})))
   }
 }

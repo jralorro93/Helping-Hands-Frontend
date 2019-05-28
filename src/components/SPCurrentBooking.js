@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Modal, Button, Image, Header, Icon, Card} from 'semantic-ui-react'
 
 class SPCurrentBooking extends Component {
-
-
-
-
   render() {
     let newDate = new Date(this.props.booking.date)
     return (
@@ -29,4 +25,5 @@ class SPCurrentBooking extends Component {
     )
   }
 }
+
 export default SPCurrentBooking
