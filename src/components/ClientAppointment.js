@@ -42,6 +42,7 @@ class ClientAppointment extends Component {
     let currenTime = this.state.time
     let currentSP = this.props.appointment.id
     this.props.patchAppt(currentSP, currentDate, currenTime)
+    this.handleClose()
   }
 
 
