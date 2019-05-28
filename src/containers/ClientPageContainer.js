@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ClientApptContainer from './ClientApptContainer';
 import NewBookingContainer from './NewBookingContainer';
+import ClientSettings from '../components/ClientSettings';
 import { connect } from 'react-redux';
 
 class ClientPageContainer extends Component {
@@ -8,6 +9,7 @@ class ClientPageContainer extends Component {
 
 
   render() {
+    console.log("this is current user: ", this.props.currentUser.id)
     let currentPage = null
     if(this.props.currentUser.id) {
       switch(this.props.selectedPage) {
@@ -17,6 +19,8 @@ class ClientPageContainer extends Component {
         case 'Current bookings':
           currentPage = <ClientApptContainer />
           break;
+        case 'Settings':
+          currentPage = <ClientSettings />
       }
     } else {
       currentPage = <h1> Loading... </h1>

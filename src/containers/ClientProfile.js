@@ -1,33 +1,26 @@
 import React, { Component } from 'react';
-import ClientApptContainer from './ClientApptContainer';
 import ClientSideBar from '../components/ClientSideBar';
-import NewBookingContainer from './NewBookingContainer'
 import { connect } from 'react-redux'
-import ClientPageContainer from './ClientPageContainer'
+// import ClientPageContainer from './ClientPageContainer'
+import { logoutUser } from '../actions/actions'
+import { Image } from 'semantic-ui-react'
 
-class ClientSide extends Component {
+class ClientProfile extends Component {
 
-  state = {
-    currentPage: 'Create a booking'
-  }
-
-  handleClick = (event) => {
-    console.log("this is handleClick", event.target.innerText)
-    this.setState({
-      currentPage: event.target.innerText
-    })
+  handleLogout = event => {
+    localStorage.removeItem("token")
+    this.props.logoutUser()
+    this.props.history.push('/')
   }
 
   render() {
     return (
       <div>
-        Hi from Client Side
-        <ClientSideBar currentPage={this.state.currentPage} handleClick={this.handleClick}/>
-        <ClientPageContainer selectedPage={this.state.currentPage}/>
+        <ClientSideBar  handleLogout={this.handleLogout}/>
       </div>
     )
   }
 }
 
 
-export default ClientSide
+export default connect(null, {logoutUser})(ClientProfile)
