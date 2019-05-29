@@ -31,7 +31,6 @@ class SPSideBar extends Component {
         <h3 className="SideWelcome">Welcome to HH!</h3>
         {this.props.currentUser.imgUrl ? <Image circular src={this.props.currentUser.imgUrl} /> : <Image circular src='/assets/images/default-profile2.png' alt='Default Pic'/> }
 
-
         <Divider/>
           <Menu.Item as='a' id='Current Jobs' onClick={this.handleClick}>
             <Icon name='book' id='Current Jobs'onClick={this.handleClick}/>
