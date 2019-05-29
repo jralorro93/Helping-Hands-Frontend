@@ -21,9 +21,13 @@ export const editAppt = info => {
   return {type: 'EDIT_INFO', payload: info}
 }
 
+export const getSPInfo = info => {
+  return {type: 'GETSP_INFO', payload: info}
+}
+
 
 // THUNK
-//CREATES NEW USER FOR SIGNUP
+//CREATES NEW USER FOR SIGNUP: Client
 export const postUser = (user, history) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/users`, {
@@ -54,6 +58,23 @@ export const postUser = (user, history) => {
      })
   }
 }
+
+
+//CREATES NEW USER FOR SIGN UP: SP
+// export const postUserSP = () => {
+//   return (dispatch) => {
+//     return fetch('http://localhost:3000/api/v1/users', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//       },
+//       body: JSON.stringify({user: {
+//
+//       }})
+//     })
+//   }
+// }
 
 //KEEPS USER LOGGED IN
 export const loginUserFromToken = token => dispatch => {
@@ -126,10 +147,7 @@ export const postBooking = (selectedSP, dateAndTime, clientId) => {
         time: dateAndTime.time
       })
     }).then(r => r.json())
-      .then(newBooking => {
-        console.log(newBooking)
-        dispatch({type: "ADD_BOOKING", payload: newBooking})
-      })
+      .then(newBooking => dispatch({type: "ADD_BOOKING", payload: newBooking}))
   }
 }
 
@@ -203,3 +221,20 @@ export const patchAppt = (id, date, time) => {
       .then(data => dispatch(editAppt({date: date, time: time})))
   }
 }
+
+
+//PATCH SERVICES FOR SP
+// export const patchServiceSP = (id) => {
+//   return (dispatch) => {
+//     return fetch(`http://localhost:3000/api/v1/users${id}`, {
+//       method: 'PATCH',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//         'Authorization': `BEARER ${localStorage.getItem('token')}`
+//       },
+//       body: JSON.stringify()
+//     })
+//
+//   }
+// }
