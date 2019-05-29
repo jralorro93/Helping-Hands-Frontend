@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react';
+import { Header, Icon, Image, Menu, Segment, Sidebar, Divider } from 'semantic-ui-react';
 import SPPageContainer from '../containers/SPPageContainer';
+import { connect } from 'react-redux';
 
 class SPSideBar extends Component {
 
@@ -27,6 +28,10 @@ class SPSideBar extends Component {
           visible
           width='thin'
         >
+        <h3 className="SideWelcome">Welcome to HH!</h3>
+        {this.props.currentUser.imgUrl ? <Image circular src={this.props.currentUser.imgUrl} /> : <Image circular src='/assets/images/default-profile2.png' alt='Default Pic'/> }
+
+        <Divider/>
           <Menu.Item as='a' id='Current Jobs' onClick={this.handleClick}>
             <Icon name='book' id='Current Jobs'onClick={this.handleClick}/>
             Current Jobs
@@ -50,8 +55,12 @@ class SPSideBar extends Component {
     )
   }
 }
-export default SPSideBar
+const mapStateToProps = state => {
+  return {currentUser: state.login.user}
+}
 
+
+export default connect(mapStateToProps)(SPSideBar)
 
 // <div>
 //   <div className="profileSideBar">

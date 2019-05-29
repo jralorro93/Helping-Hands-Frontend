@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import { Header, Icon, Image, Menu, Segment, Sidebar, Divider } from 'semantic-ui-react'
 import ClientPageContainer from '../containers/ClientPageContainer'
+import { connect } from 'react-redux';
 
 
 class ClientSideBar extends Component{
@@ -15,6 +16,7 @@ class ClientSideBar extends Component{
   }
 
   render() {
+    console.log('this is from store', this.props.currentUser.imgUrl)
     return (
       <Sidebar.Pushable as={Segment}>
         <Sidebar
@@ -26,6 +28,10 @@ class ClientSideBar extends Component{
           visible
           width='thin'
         >
+          <h3 className="SideWelcome">Welcome to HH!</h3>
+          {this.props.currentUser.imgUrl ? <Image circular src={this.props.currentUser.imgUrl} /> : <Image circular src='/assets/images/default-profile2.png' alt='Default Pic'/> }
+
+          <Divider/>
           <Menu.Item as='a' id='Create a booking' onClick={this.handleClick}>
             <Icon name='pencil' id='Create a booking' onClick={this.handleClick}/>
             Create a booking
@@ -53,7 +59,15 @@ class ClientSideBar extends Component{
     )
   }
 }
-export default ClientSideBar
+
+
+
+const mapStateToProps = state => {
+  return {currentUser: state.login.user}
+}
+
+
+export default connect(mapStateToProps)(ClientSideBar)
 
 
 // <div>

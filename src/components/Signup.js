@@ -39,7 +39,7 @@ class Signup extends Component {
     return (
       <div className='SignUpPage'>
         <div className='SignUpForm'>
-          <h1>Join us!</h1>
+          <h1>Client</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group>
               <Form.Input label='First Name: ' placeholder='First Name' type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange}/><br/>

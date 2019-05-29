@@ -58,7 +58,7 @@ div.headerWithText {
   background-size: cover;
   height: 500px;
   width: 100%;
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./assests/images/desktop2.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./assets/images/desktop2.jpg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -99,7 +99,7 @@ div.inline.fields.signUpRadio {
 }
 
 div.SignUpPage {
-  background-image: url('./assests/images/blue-sky.jpg');
+  background-image: url('./assets/images/blue-sky.jpg');
   height: 850px;
 }
 
@@ -111,7 +111,7 @@ h1.MakeAppt {
   text-align: center;
 }
 
-/* div.SignUpForm {
-  background-image: url('./assests/images/butterfly.jpg');
-  max-height: 100%;
-} */
+h3.SideWelcome {
+  color: white;
+  text-shadow: 3px 1.5px #808080;
+}
