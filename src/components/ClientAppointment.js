@@ -70,8 +70,8 @@ class ClientAppointment extends Component {
 
              <Divider/>
              {this.state.showForm ? <Form>
+              <h3>Editting Date and Time:</h3>
                <Form.Group>
-                 <h3>Editting Date and Time:</h3>
                  <DateInput
                    name="date"
                    placeholder="Date"

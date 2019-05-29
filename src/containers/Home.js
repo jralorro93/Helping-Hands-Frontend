@@ -34,21 +34,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="headerWithText">
-          <div className='headerText'>
-            <Container text>
-              <Header
-                className='headerText'
-                as='h1'
-                content='Helping Hands'
-              />
-              <Header
-                className='headerText'
-                as='h2'
-                content='Help Us, Help You.'
-              />
-            </Container>
-          </div>
+        <div className="headerWithText" >
         </div>
         <Segment style={{ padding: '0em' }} vertical>
           <Grid celled='internally' columns='equal' stackable>
@@ -69,6 +55,7 @@ class Home extends Component {
             </Grid.Row>
           </Grid>
         </Segment>
+
 
       </div>
     )
