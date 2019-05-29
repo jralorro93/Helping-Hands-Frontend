@@ -12,7 +12,9 @@ class SPSettings extends Component {
     last_name: '',
     email: '',
     password: '',
-    modalOpen: false
+    modalOpen: false,
+    job: '',
+    showForm: false
   }
 
   //CLOSES THE MODAL
@@ -27,6 +29,7 @@ class SPSettings extends Component {
     })
   }
 
+  //Handles upload image
   handlePostUrl = (event) => {
     let newImage = this.state.imageUrl
     let currentUser = this.props.user.id
@@ -34,6 +37,7 @@ class SPSettings extends Component {
     this.props.patchImageUrl(newImage, currentUser)
   }
 
+  //Handle PATCH for personal info
   handleUserInfo = (event) => {
     let currentUser = this.props.user.id
     let currentFirst = this.state.first_name
@@ -45,7 +49,20 @@ class SPSettings extends Component {
   }
 
 
+  //Toggles Add Profession Form
+  handleShowForm = () => {
+    this.setState({showForm: !this.state.showForm})
+  }
+
+  //Handles Add Profession Form
+  handleAddJob = () => {
+    let currentUser = this.props.user.id
+    console.log("this is handleAddJob")
+  }
+
+
   render() {
+    console.log("this is current user from SPS: ", this.props)
     return (
       <div>
         <h1 className='Settings'>Settings</h1>
@@ -79,6 +96,19 @@ class SPSettings extends Component {
             <Button onClick={this.handleUserInfo} inverted color='green'>Save</Button>
           </Modal.Actions>
         </Modal>
+        <Divider />
+        <h3>Profession(s) <Icon name='add' color='green' onClick={this.handleShowForm}/></h3>
+        {this.state.showForm ?
+          <Form>
+            <h2>Add a Profession:</h2>
+            <Form.Input onChange={this.handleChange} label='Profession' name='job' placeholder='i.e "Gardener"'/>
+            <Form.Button onClick={this.handleAddJob}>Save</Form.Button>
+          </Form> :
+          null}
+        <ul>
+          {this.props.user.services.map(service => <li>{service.job} <Icon name='delete' size='small' color='red'/> </li>  )}
+        </ul>
+        <Divider/>
       </div>
     )
   }
