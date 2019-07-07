@@ -4,6 +4,7 @@ import { withRouter, Switch, Route } from "react-router-dom";
 import Home from './containers/Home';
 import Login from './components/Login';
 import Signup from './components/Signup'
+import SPSignUp from './components/SPSignUp';
 import { connect } from 'react-redux'
 import ClientProfile from './containers/ClientProfile'
 import SPProfile from './containers/SPProfile'
@@ -25,6 +26,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path='/signup' component={Signup}/>
+        <Route exact path='/SPSignUp' component={SPSignUp}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/clientProfile" component={ClientProfile} />
         <Route exact path="/spProfile" component={SPProfile}/>

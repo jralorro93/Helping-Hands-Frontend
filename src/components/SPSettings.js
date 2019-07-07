@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Divider, Button, Header, Image, Modal, Form, Icon } from 'semantic-ui-react';
-import { patchImageUrl, patchUserInfo } from '../actions/actions'
+import { patchImageUrl, patchUserInfo, patchServiceSP } from '../actions/actions'
 
 
 class SPSettings extends Component {
@@ -14,7 +14,9 @@ class SPSettings extends Component {
     password: '',
     modalOpen: false,
     job: '',
-    showForm: false
+    availability: '',
+    description: '',
+    price: ''
   }
 
   //CLOSES THE MODAL
@@ -57,12 +59,12 @@ class SPSettings extends Component {
   //Handles Add Profession Form
   handleAddJob = () => {
     let currentUser = this.props.user.id
-    console.log("this is handleAddJob")
+    this.props.patchServiceSP(currentUser, this.state.job)
   }
 
 
   render() {
-    console.log("this is current user from SPS: ", this.props)
+    console.log('this is props from SPS: ', this.props)
     return (
       <div>
         <h1 className='Settings'>Settings</h1>
@@ -97,16 +99,20 @@ class SPSettings extends Component {
           </Modal.Actions>
         </Modal>
         <Divider />
-        <h3>Profession(s) <Icon name='add' color='green' onClick={this.handleShowForm}/></h3>
+        <h3>Profession <Icon name='edit' color='green' onClick={this.handleShowForm}/></h3>
         {this.state.showForm ?
           <Form>
-            <h2>Add a Profession:</h2>
-            <Form.Input onChange={this.handleChange} label='Profession' name='job' placeholder='i.e "Gardener"'/>
-            <Form.Button onClick={this.handleAddJob}>Save</Form.Button>
+            <h2>Edit Your Profession:</h2>
+            <Form.Input label='Profession' name='job' placeholder='i.e "Gardener"' onChange={this.handleChange} />
+            <Form.Input label='Availability' placeholder='ex.) Mon, Wed, Thurs' type='text' name='availability' value={this.state.availability}  onChange={this.handleChange}/>
+            <Form.Group>
+              <Form.TextArea label='Description' placeholder='Write a brief bio' type='text' name='description' value={this.state.description} onChange={this.handleChange}/>
+            </Form.Group>
+            <Form.Button color='green' onClick={this.handleAddJob}>Save</Form.Button>
           </Form> :
           null}
         <ul>
-          {this.props.user.services.map(service => <li>{service.job} <Icon name='delete' size='small' color='red'/> </li>  )}
+          {this.props.user.services.map(service => <li>{service.job}</li>  )}
         </ul>
         <Divider/>
       </div>
@@ -120,7 +126,7 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { patchImageUrl, patchUserInfo })(SPSettings)
+export default connect(mapStateToProps, { patchImageUrl, patchUserInfo, patchServiceSP })(SPSettings)
 
 
 // <Modal className='imgInfo' onClose={this.handleClose} open={this.state.modalOpen}

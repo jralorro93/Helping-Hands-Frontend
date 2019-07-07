@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Modal, Button, Image, Header, Icon, Card, Form, Divider} from 'semantic-ui-react'
+import React from 'react';
+import { Modal, Button, Image, Header, Icon, Card, Form, Divider, Dimmer, Loader, Segment} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { deleteBookingRequest, deleteBooking, patchAppt} from '../actions/actions';
 import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 
-class ClientAppointment extends Component {
+class ClientAppointment extends React.Component {
 
   state = {
     modalOpen: false,
@@ -35,6 +35,12 @@ class ClientAppointment extends Component {
     }
   }
 
+  handleLoaded = () => {
+    this.setState({
+      loaded: !this.state.loaded
+    })
+  }
+
   handleEdit = (event) => {
     event.preventDefault()
     console.log('this is handleEdit', this.props)
@@ -45,56 +51,56 @@ class ClientAppointment extends Component {
     this.handleClose()
   }
 
-
-
-
-
   render() {
     return (
       <div>
-        <Modal onClose={this.handleClose} open={this.state.modalOpen}
-          trigger={<Card
-            onClick={() => this.handleOpen() }
-            image={this.props.serviceProvider.imgUrl}
-            header={this.props.serviceProvider.first_name}
-            meta={this.props.appointment.service.job}
-        />}>
-           <Modal.Header>{this.props.serviceProvider.first_name} {this.props.serviceProvider.last_name}</Modal.Header>
-           <Modal.Content image>
-             <Image wrapped size='small' src={this.props.serviceProvider.imgUrl} />
-             <Modal.Description>
-               <Header>Date and Time:</Header>
-               <p>{this.props.appointment.date} at {this.props.appointment.time}</p>
-             </Modal.Description>
-             {/*Shows form if clicked on Edit Appointment*/}
-
-             <Divider/>
-             {this.state.showForm ? <Form>
-              <h3>Editting Date and Time:</h3>
-               <Form.Group>
-                 <DateInput
-                   name="date"
-                   placeholder="Date"
-                   value={this.state.date}
-                   iconPosition="left"
-                   onChange={this.handleChange}
-                 />
-                 <TimeInput
-                   name="time"
-                   placeholder="Time"
-                   value={this.state.time}
-                   iconPosition="left"
-                   onChange={this.handleChange}
-                 />
-                </Form.Group>
-                <Form.Button onClick={this.handleEdit}color='blue'>Submit</Form.Button>
-              </Form> : null}
-           </Modal.Content>
-           <Modal.Actions>
-             <Button onClick={this.handleShow}>Edit Appointment</Button>
-             <Button negative onClick={() => this.handleDelete(this.props.appointment)}>Cancel Appointment</Button>
-           </Modal.Actions>
-         </Modal>
+      { this.props.serviceProvider ? <Modal onClose={this.handleClose} open={this.state.modalOpen}
+                trigger={<Card
+                  onClick={() => this.handleOpen() }
+                  image={this.props.serviceProvider.imgUrl}
+                  header={this.props.serviceProvider.first_name}
+                  meta={this.props.appointment.service.job}
+              />}>
+                 <Modal.Header>{this.props.serviceProvider.first_name} {this.props.serviceProvider.last_name}</Modal.Header>
+                 <Modal.Content image>
+                   <Image wrapped size='small' src={this.props.serviceProvider.imgUrl} />
+                   <Modal.Description>
+                     <Header>Date and Time:</Header>
+                     <p>{this.props.appointment.date} at {this.props.appointment.time}</p>
+                   </Modal.Description>
+                   {/*Shows form if clicked on Edit Appointment*/}
+                   <Divider/>
+                   {this.state.showForm ? <Form>
+                    <h3>Editting Date and Time:</h3>
+                     <Form.Group>
+                       <DateInput
+                         name="date"
+                         placeholder="Date"
+                         value={this.state.date}
+                         iconPosition="left"
+                         onChange={this.handleChange}
+                       />
+                       <TimeInput
+                         name="time"
+                         placeholder="Time"
+                         value={this.state.time}
+                         iconPosition="left"
+                         onChange={this.handleChange}
+                       />
+                      </Form.Group>
+                      <Form.Button onClick={this.handleEdit}color='blue'>Submit</Form.Button>
+                    </Form> : null}
+                 </Modal.Content>
+                 <Modal.Actions>
+                   <Button onClick={this.handleShow}>Edit Appointment</Button>
+                   <Button negative onClick={() => this.handleDelete(this.props.appointment)}>Cancel Appointment</Button>
+                 </Modal.Actions>
+               </Modal> : <Segment>
+                 <Dimmer active>
+                   <Loader content='Loading' />
+                 </Dimmer>
+              </Segment>
+             }
       </div>
     )
   }

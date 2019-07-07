@@ -94,12 +94,20 @@ div.SignUpForm {
   margin-left: -188px;
 }
 
+div.SPSignUpForm {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -240px;
+  margin-top: -155px;
+}
+
 div.inline.fields.signUpRadio {
   text-align: center;
 }
 
 div.SignUpPage {
-  background-image: url('./assets/images/blue-sky.jpg');
+  background-image: url('./assets/images/Sign-Up-Background.png');
   height: 850px;
 }
 
@@ -114,4 +122,22 @@ h1.MakeAppt {
 h3.SideWelcome {
   color: white;
   text-shadow: 3px 1.5px #808080;
+}
+
+
+.container{
+    text-align: center;
+}
+
+.fixed-footer {
+    width: 100%;
+    position: fixed;
+    background: #333;
+    padding: 10px 0;
+    color: #fff;
+    bottom: 0;
+}
+
+div.PageContainer {
+  min-height: 800px;
 }

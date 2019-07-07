@@ -20,7 +20,7 @@ class SPPageContainer extends Component {
       currentPage = <h1> Loading... </h1>
     }
     return (
-      <div>
+      <div className='PageContainer'>
         {currentPage}
       </div>
     )
