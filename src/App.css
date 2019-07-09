@@ -115,3 +115,7 @@ h3.SideWelcome {
   color: white;
   text-shadow: 3px 1.5px #808080;
 }
+
+div.BookingContainer {
+  min-height: 800px;
+}
