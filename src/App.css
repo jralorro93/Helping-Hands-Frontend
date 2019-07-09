@@ -141,3 +141,6 @@ h3.SideWelcome {
 div.PageContainer {
   min-height: 800px;
 }
+div.BookingContainer {
+  min-height: 800px;
+}

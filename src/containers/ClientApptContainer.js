@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import ClientAppointment from '../components/ClientAppointment';
 
 class ClientApptContainer extends Component {
-
   render() {
     return (
-        <div>
+        <div className='BookingContainer'>
           <h2 className='CurrentBookings'>Current Bookings:</h2>
           <ul>
             {this.props.currentUser.appointments.map(appointment => {
