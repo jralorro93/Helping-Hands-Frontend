@@ -228,16 +228,21 @@ export const patchAppt = (id, date, time) => {
 
 
 //PATCH SERVICES FOR SP
-export const patchServiceSP = (id, service) => {
+export const patchServiceSP = (id, service, description, availability) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users${id}`, {
+    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': `BEARER ${localStorage.getItem('token')}`
       },
-      body: JSON.stringify({services: service})
+      body: JSON.stringify({
+        services: {
+          job: service,
+          availability: availability
+        }
+      })
     }).then(r => r.json())
       .then(data => {
         console.log('this is new job data: ', data)

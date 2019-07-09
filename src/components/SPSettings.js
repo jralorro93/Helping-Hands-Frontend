@@ -15,8 +15,7 @@ class SPSettings extends Component {
     modalOpen: false,
     job: '',
     availability: '',
-    description: '',
-    price: ''
+    description: ''
   }
 
   //CLOSES THE MODAL
@@ -59,7 +58,7 @@ class SPSettings extends Component {
   //Handles Add Profession Form
   handleAddJob = () => {
     let currentUser = this.props.user.id
-    this.props.patchServiceSP(currentUser, this.state.job)
+    this.props.patchServiceSP(currentUser, this.state.job, this.state.descripton, this.state.availability)
   }
 
 
@@ -105,10 +104,10 @@ class SPSettings extends Component {
             <h2>Edit Your Profession:</h2>
             <Form.Input label='Profession' name='job' placeholder='i.e "Gardener"' onChange={this.handleChange} />
             <Form.Input label='Availability' placeholder='ex.) Mon, Wed, Thurs' type='text' name='availability' value={this.state.availability}  onChange={this.handleChange}/>
+            <Form.Button color='green' onClick={this.handleAddJob}>Save</Form.Button>
             <Form.Group>
               <Form.TextArea label='Description' placeholder='Write a brief bio' type='text' name='description' value={this.state.description} onChange={this.handleChange}/>
             </Form.Group>
-            <Form.Button color='green' onClick={this.handleAddJob}>Save</Form.Button>
           </Form> :
           null}
         <ul>
@@ -127,6 +126,10 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, { patchImageUrl, patchUserInfo, patchServiceSP })(SPSettings)
+
+
+
+
 
 
 // <Modal className='imgInfo' onClose={this.handleClose} open={this.state.modalOpen}
