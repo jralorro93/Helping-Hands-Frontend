@@ -25,6 +25,10 @@ export const getSPInfo = info => {
   return {type: 'GETSP_INFO', payload: info}
 }
 
+export const addJob = info => {
+  return {type: 'ADD_JOB', payload: info}
+}
+
 
 // THUNK
 //CREATES NEW USER FOR SIGNUP: Client
@@ -42,12 +46,12 @@ export const postUser = (user, history) => {
          last_name: user.last_name,
          password: user.password,
          email: user.email,
-         role: user.selectedOption
+         role: user.role
        }})
      })
      .then(r => r.json())
      .then(user => {
-       //Needs working for rerouting
+       console.log('this is new user: ', user)
        dispatch(addUser(user))
        localStorage.setItem('token', user.jwt)
        if (user.user.role === "client")  {
@@ -224,17 +228,39 @@ export const patchAppt = (id, date, time) => {
 
 
 //PATCH SERVICES FOR SP
-// export const patchServiceSP = (id) => {
-//   return (dispatch) => {
-//     return fetch(`http://localhost:3000/api/v1/users${id}`, {
-//       method: 'PATCH',
+export const patchServiceSP = (id, service) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/users${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({services: service})
+    }).then(r => r.json())
+      .then(data => {
+        console.log('this is new job data: ', data)
+
+      })
+
+  }
+}
+
+//POST SERVICES
+// export const postJob = (id, newService) => {
+//   return (dispatch) {
+//     return fetch(`http://localhost:3000/api/v1/services`, {
+//       method: 'POST',
 //       headers: {
 //         'Content-Type': 'application/json',
-//         'Accept': 'application/json',
-//         'Authorization': `BEARER ${localStorage.getItem('token')}`
+//         'Accept': 'application/json'
 //       },
-//       body: JSON.stringify()
+//       body: JSON.stringify({
+//         job: newService.job,
+//         price: newService.price,
+//         availability: newService.availability,
+//       })
 //     })
-//
 //   }
 // }

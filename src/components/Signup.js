@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUser, postUser } from '../actions/actions'
+import { postUser } from '../actions/actions'
 import { Form } from 'semantic-ui-react'
 
 class Signup extends Component {
 
   state = {
-    selectedOption: "",
     first_name: "",
     last_name: "",
     email: "",
-    password: ""
+    password: "",
+    passwordConf: "",
+    role: 'client'
   }
 
   handleChange = (event) => {
@@ -19,20 +20,16 @@ class Signup extends Component {
     })
   }
 
-  handleChangeRole = (event) => {
-    this.setState({
-      selectedOption: event.target.value
-    })
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     //Sets new user to current state info
     let newUser = this.state
-    //Takes current user and adds as a payload
-    this.props.addUser(newUser)
     //Makes a POST request to create new user
-    this.props.postUser(newUser, this.props.history)
+    if (this.state.passwordConf === this.state.password) {
+      this.props.postUser(newUser, this.props.history)
+    } else {
+      return 'Passwords must match'
+    }
   }
 
   render() {
@@ -48,15 +45,8 @@ class Signup extends Component {
             <Form.Group>
               <Form.Input label='Email: ' placeholder='Email' type="email" name="email" value={this.state.email} onChange={this.handleChange}/><br/>
               <Form.Input label='Password: ' placeholder='Password' type="password"name="password" value={this.state.password} onChange={this.handleChange}/><br/>
+              <Form.Input label='Password Confirmation: ' placeholder='Password Confirmation' type="password" name="passwordConf" value={this.state.passwordConf} onChange={this.handleChange}/>
             </Form.Group>
-            <label>
-              <input type="radio" value="client" checked={this.state.selectedOption === 'client'} onChange={this.handleChangeRole}/>
-              Client
-            </label>
-            <label>
-              <input type="radio" value="service provider" checked={this.state.selectedOption === 'service provider'} onChange={this.handleChangeRole}/>
-              Service Provider
-            </label><br/>
             <input type='submit'/>
           </Form>
         </div>
@@ -66,7 +56,7 @@ class Signup extends Component {
 }
 
 
-export default connect(null, {addUser, postUser} )(Signup)
+export default connect(null, { postUser} )(Signup)
 
 // <Form>
 //   <Form.Group widths='equal'>
