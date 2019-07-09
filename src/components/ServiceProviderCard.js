@@ -45,6 +45,7 @@ class ServiceProviderCard extends Component {
 
   render() {
     const { open, dimmer } = this.state
+    console.log('this is props for SPC: ', this.props)
     return (
       <Fragment>
         <Modal onClose={this.handleClose} open={this.state.modalOpen}
@@ -60,7 +61,7 @@ class ServiceProviderCard extends Component {
            <Image wrapped size='medium' src={this.props.service.service_provider.imgUrl} />
            <Modal.Description>
              <Header>{this.props.service.service_provider.first_name} {this.props.service.service_provider.last_name}</Header>
-             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed sagittis sapien.</p>
+             <p>{this.props.service.description}</p>
            </Modal.Description>
            <Form>
             <Form.Group>

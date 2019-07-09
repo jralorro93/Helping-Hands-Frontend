@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Header, Icon, Image, Menu, Segment, Sidebar, Divider } from 'semantic-ui-react'
 import ClientPageContainer from '../containers/ClientPageContainer'
 import { connect } from 'react-redux';
-
+import DefaultPic from '../assets/images/default-pic.png'
 
 class ClientSideBar extends Component{
   state = {
@@ -29,7 +29,7 @@ class ClientSideBar extends Component{
           width='thin'
         >
           <h3 className="SideWelcome">Welcome to HH!</h3>
-          {this.props.currentUser.imgUrl ? <Image circular src={this.props.currentUser.imgUrl} /> : <Image circular src='/assets/images/default-profile2.png' alt='Default Pic'/> }
+          {this.props.currentUser.imgUrl ? <Image circular src={this.props.currentUser.imgUrl} /> : <Image circular src={DefaultPic} alt='Default Pic'/> }
 
           <Divider/>
           <Menu.Item as='a' id='Create a booking' onClick={this.handleClick}>

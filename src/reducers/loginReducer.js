@@ -10,8 +10,6 @@ export const loginReducer = (state = initialState, action) => {
     case 'LOGOUT_USER':
       return {...state, user: {}}
     case 'ADD_BOOKING':
-      console.log(state)
-      // debugger
       return {...state, user: {...state.user, appointments: [...state.user.appointments, action.payload]}}
     case 'DELETE_BOOKING':
       return {...state, user: {...state.user, appointments: state.user.appointments.filter(appointment => appointment !== action.payload)}}
