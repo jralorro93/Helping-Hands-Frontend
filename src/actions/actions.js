@@ -228,9 +228,9 @@ export const patchAppt = (id, date, time) => {
 
 
 //PATCH SERVICES FOR SP
-export const patchServiceSP = (id, service, description, availability) => {
+export const patchServiceSP = (id, serviceID ,service, description, availability) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
+    return fetch(`http://localhost:3000/api/v1/services/${serviceID}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -238,10 +238,11 @@ export const patchServiceSP = (id, service, description, availability) => {
         'Authorization': `BEARER ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
-        services: {
+        service: {
           job: service,
-          availability: availability
-        }
+          availability: availability,
+          description: description
+        },
       })
     }).then(r => r.json())
       .then(data => {
