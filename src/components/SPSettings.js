@@ -57,12 +57,11 @@ class SPSettings extends Component {
   handleAddJob = () => {
     let currentUser = this.props.user.id
     let currentServiceId = this.props.user.service.id
-    this.props.patchServiceSP(currentUser, currentServiceId, this.state.job, this.state.descripton, this.state.availability)
+    this.props.patchServiceSP(currentUser, currentServiceId, this.state.job, this.state.description, this.state.availability)
   }
 
 
   render() {
-    console.log('this is current user: ', this.props.user.service.id)
     return (
       <div>
         <h1 className='Settings'>Settings</h1>
@@ -110,7 +109,7 @@ class SPSettings extends Component {
           </Form> :
           null}
         <ul>
-          <li>{this.props.user.service.job}</li>
+
         </ul>
         <Divider/>
       </div>

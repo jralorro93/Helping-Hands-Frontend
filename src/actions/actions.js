@@ -57,7 +57,7 @@ export const postUser = (user, history) => {
        if (user.user.role === "client")  {
          history.push('/clientProfile')
        } else {
-         history.push('/spProfile')
+         history.push('/spNewJobPage')
        }
      })
   }
@@ -245,28 +245,30 @@ export const patchServiceSP = (id, serviceID ,service, description, availability
         },
       })
     }).then(r => r.json())
-      .then(data => {
-        console.log('this is new job data: ', data)
-
-      })
+      .then(data => dispatch())
 
   }
 }
 
-//POST SERVICES
-// export const postJob = (id, newService) => {
-//   return (dispatch) {
-//     return fetch(`http://localhost:3000/api/v1/services`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         job: newService.job,
-//         price: newService.price,
-//         availability: newService.availability,
-//       })
-//     })
-//   }
-// }
+// POST SERVICES FOR SP
+export const postJob = (id, newService) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/services`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        job: newService.job,
+        description: newService.description,
+        availability: newService.availability,
+        service_provider: {
+          id: id
+        }
+      })
+    }).then(r => r.json())
+      .then(data => console.log('this is data: ', data))
+  }
+}

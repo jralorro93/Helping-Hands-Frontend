@@ -8,6 +8,7 @@ import SPSignUp from './components/SPSignUp';
 import { connect } from 'react-redux'
 import ClientProfile from './containers/ClientProfile'
 import SPProfile from './containers/SPProfile'
+import SPNewJobPage from './components/SPNewJobPage'
 import { loginUser, loginUserFromToken } from './actions/actions'
 
 class App extends Component {
@@ -28,8 +29,9 @@ class App extends Component {
         <Route exact path='/signup' component={Signup}/>
         <Route exact path='/SPSignUp' component={SPSignUp}/>
         <Route exact path="/login" component={Login}/>
-        <Route exact path="/clientProfile" component={ClientProfile} />
+        <Route exact path="/clientProfile" component={ClientProfile}/>
         <Route exact path="/spProfile" component={SPProfile}/>
+        <Route exact path="/spNewJobPage" component={SPNewJobPage}/>
       </Switch>
     )
   }

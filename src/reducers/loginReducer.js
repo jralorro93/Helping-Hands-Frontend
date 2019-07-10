@@ -23,6 +23,8 @@ export const loginReducer = (state = initialState, action) => {
         email: action.payload.email,
         password: action.payload.password
       }}
+    case 'ADD_JOB':
+      return {...state, user: {...state.user, service: action.payload}}
     default:
       return state
   }
