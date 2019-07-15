@@ -35,11 +35,6 @@ class SPSignUp extends Component {
         password: this.state.password,
         role: this.state.role,
       }
-      let newService = {
-        job: this.state.job,
-        availability: this.state.availability,
-        description: this.state.description
-      }
       this.props.postUser(newUser, this.props.history)
     } else {
       return 'The passwords must match'

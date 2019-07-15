@@ -51,34 +51,17 @@ export const postUser = (user, history) => {
      })
      .then(r => r.json())
      .then(user => {
-       console.log('this is new user: ', user)
+
        dispatch(addUser(user))
        localStorage.setItem('token', user.jwt)
        if (user.user.role === "client")  {
          history.push('/clientProfile')
        } else {
-         history.push('/spProfile')
+         history.push('/spNewJobPage')
        }
      })
   }
 }
-
-
-//CREATES NEW USER FOR SIGN UP: SP
-// export const postUserSP = () => {
-//   return (dispatch) => {
-//     return fetch('http://localhost:3000/api/v1/users', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json'
-//       },
-//       body: JSON.stringify({user: {
-//
-//       }})
-//     })
-//   }
-// }
 
 //KEEPS USER LOGGED IN
 export const loginUserFromToken = token => dispatch => {
@@ -228,39 +211,48 @@ export const patchAppt = (id, date, time) => {
 
 
 //PATCH SERVICES FOR SP
-export const patchServiceSP = (id, service) => {
+export const patchServiceSP = (id, serviceID ,service, description, availability) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users${id}`, {
+    return fetch(`http://localhost:3000/api/v1/services/${serviceID}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': `BEARER ${localStorage.getItem('token')}`
       },
-      body: JSON.stringify({services: service})
-    }).then(r => r.json())
-      .then(data => {
-        console.log('this is new job data: ', data)
-
+      body: JSON.stringify({
+        service: {
+          job: service,
+          availability: availability,
+          description: description
+        },
       })
+    }).then(r => r.json())
+      .then(data => dispatch())
 
   }
 }
 
-//POST SERVICES
-// export const postJob = (id, newService) => {
-//   return (dispatch) {
-//     return fetch(`http://localhost:3000/api/v1/services`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         job: newService.job,
-//         price: newService.price,
-//         availability: newService.availability,
-//       })
-//     })
-//   }
-// }
+// POST SERVICES FOR SP
+export const postJob = (id, newService, history) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/services`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        job: newService.job,
+        description: newService.description,
+        availability: newService.availability,
+        service_provider_id: id
+      })
+    }).then(r => r.json())
+      .then(data => {
+        dispatch(addJob(data))
+        history.push('/spProfile')
+      })
+  }
+}

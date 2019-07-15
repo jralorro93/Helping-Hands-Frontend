@@ -15,8 +15,7 @@ class SPSettings extends Component {
     modalOpen: false,
     job: '',
     availability: '',
-    description: '',
-    price: ''
+    description: ''
   }
 
   //CLOSES THE MODAL
@@ -25,7 +24,6 @@ class SPSettings extends Component {
 
 
   handleChange = (event) => {
-    console.log("this is handleChange", event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -35,7 +33,6 @@ class SPSettings extends Component {
   handlePostUrl = (event) => {
     let newImage = this.state.imageUrl
     let currentUser = this.props.user.id
-    console.log('this is current User', this.props.user.id)
     this.props.patchImageUrl(newImage, currentUser)
   }
 
@@ -59,12 +56,12 @@ class SPSettings extends Component {
   //Handles Add Profession Form
   handleAddJob = () => {
     let currentUser = this.props.user.id
-    this.props.patchServiceSP(currentUser, this.state.job)
+    let currentServiceId = this.props.user.service.id
+    this.props.patchServiceSP(currentUser, currentServiceId, this.state.job, this.state.description, this.state.availability)
   }
 
 
   render() {
-    console.log('this is props from SPS: ', this.props)
     return (
       <div>
         <h1 className='Settings'>Settings</h1>
@@ -108,11 +105,11 @@ class SPSettings extends Component {
             <Form.Group>
               <Form.TextArea label='Description' placeholder='Write a brief bio' type='text' name='description' value={this.state.description} onChange={this.handleChange}/>
             </Form.Group>
-            <Form.Button color='green' onClick={this.handleAddJob}>Save</Form.Button>
+          <Form.Button color='green' onClick={this.handleAddJob}>Save</Form.Button>
           </Form> :
           null}
         <ul>
-          {this.props.user.services.map(service => <li>{service.job}</li>  )}
+
         </ul>
         <Divider/>
       </div>
@@ -127,6 +124,10 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, { patchImageUrl, patchUserInfo, patchServiceSP })(SPSettings)
+
+
+
+
 
 
 // <Modal className='imgInfo' onClose={this.handleClose} open={this.state.modalOpen}
