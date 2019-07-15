@@ -51,7 +51,7 @@ export const postUser = (user, history) => {
      })
      .then(r => r.json())
      .then(user => {
-       console.log('this is new user: ', user)
+
        dispatch(addUser(user))
        localStorage.setItem('token', user.jwt)
        if (user.user.role === "client")  {
@@ -62,23 +62,6 @@ export const postUser = (user, history) => {
      })
   }
 }
-
-
-//CREATES NEW USER FOR SIGN UP: SP
-// export const postUserSP = () => {
-//   return (dispatch) => {
-//     return fetch('http://localhost:3000/api/v1/users', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json'
-//       },
-//       body: JSON.stringify({user: {
-//
-//       }})
-//     })
-//   }
-// }
 
 //KEEPS USER LOGGED IN
 export const loginUserFromToken = token => dispatch => {
@@ -251,7 +234,7 @@ export const patchServiceSP = (id, serviceID ,service, description, availability
 }
 
 // POST SERVICES FOR SP
-export const postJob = (id, newService) => {
+export const postJob = (id, newService, history) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/services`, {
       method: 'POST',
@@ -264,11 +247,12 @@ export const postJob = (id, newService) => {
         job: newService.job,
         description: newService.description,
         availability: newService.availability,
-        service_provider: {
-          id: id
-        }
+        service_provider_id: id
       })
     }).then(r => r.json())
-      .then(data => console.log('this is data: ', data))
+      .then(data => {
+        dispatch(addJob(data))
+        history.push('/spProfile')
+      })
   }
 }

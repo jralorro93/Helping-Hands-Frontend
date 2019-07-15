@@ -26,10 +26,11 @@ class SPNewJobPage extends Component {
       availability: this.state.availability,
       description: this.state.description
     }
-    this.props.postJob(currentUser, newService)
+    this.props.postJob(currentUser, newService, this.props.history)
   }
 
   render() {
+    console.log('this is props: ', this.props)
     return (
       <div className='newJobPage'>
         <div className="addingNewJobForm">
