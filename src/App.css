@@ -144,3 +144,7 @@ div.PageContainer {
 div.BookingContainer {
   min-height: 800px;
 }
+
+#modalHeader {
+  background-color: #CECACA;
+}
