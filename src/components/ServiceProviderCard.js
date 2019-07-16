@@ -56,15 +56,15 @@ class ServiceProviderCard extends Component {
             meta={this.props.service.job}
             description={this.props.service.availability}
         /> }>
-         <Modal.Header>{this.props.service.job}</Modal.Header>
+         <Modal.Header id='modalHeader'>{this.props.service.job}</Modal.Header>
          <Modal.Content image>
            <Image wrapped size='medium' src={this.props.service.service_provider.imgUrl} />
            <Modal.Description>
              <Header>{this.props.service.service_provider.first_name} {this.props.service.service_provider.last_name}</Header>
+             <h4>Availability: {this.props.service.availability}</h4>
              <p>{this.props.service.description}</p>
            </Modal.Description>
            <Form>
-            <Form.Group>
               <DateInput
                 name="date"
                 placeholder="Date"
@@ -79,10 +79,9 @@ class ServiceProviderCard extends Component {
                 iconPosition="left"
                 onChange={this.handleChange}
               />
-             </Form.Group>
            </Form>
          </Modal.Content>
-         <Modal.Actions>
+         <Modal.Actions id='modalHeader'>
            <Button type="submit" color='green'content="Save" onClick={(event) => this.handleSubmit(event)}>
              Book Now! <Icon name='right chevron' />
            </Button>

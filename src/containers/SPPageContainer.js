@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import SPApptContainer from './SPApptContainer';
 import SPSettings from '../components/SPSettings';
-import { connect } from 'react-redux'
+import SPProfileTab from './SPProfileTab';
+import { connect } from 'react-redux';
 
 class SPPageContainer extends Component {
   render() {
+      console.log('this is selectedPage', this.props.selectedPage)
     let currentPage = null
     if(this.props.currentUser.id) {
       switch(this.props.selectedPage) {
+        case 'Profile':
+          currentPage = <SPProfileTab />
+          break;
         case 'Current Jobs':
           currentPage = <SPApptContainer />
           break;

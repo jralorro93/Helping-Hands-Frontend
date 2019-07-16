@@ -97,6 +97,7 @@ class SPSettings extends Component {
         </Modal>
         <Divider />
         <h3>Profession <Icon name='edit' color='green' onClick={this.handleShowForm}/></h3>
+        <li>{this.props.user.service.job}</li>
         {this.state.showForm ?
           <Form>
             <h2>Edit Your Profession:</h2>
