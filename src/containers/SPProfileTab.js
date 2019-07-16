@@ -8,7 +8,10 @@ class SPProfileTab extends Component {
     return (
       <div>
         <h1>{fullName}</h1>
+<<<<<<< HEAD
         
+=======
+>>>>>>> jep
       </div>
     )
   }

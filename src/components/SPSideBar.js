@@ -7,7 +7,7 @@ import DefaultPic from '../assets/images/default-pic.png'
 class SPSideBar extends Component {
 
   state = {
-    currentPage: 'Current Jobs'
+    currentPage: 'Profile'
   }
 
   handleClick = (event) => {
@@ -33,8 +33,12 @@ class SPSideBar extends Component {
         {this.props.currentUser.imgUrl ? <Image circular src={this.props.currentUser.imgUrl} /> : <Image circular src={DefaultPic} alt='Default Pic'/> }
 
         <Divider/>
+          <Menu.Item as='a' id='Profile' onClick={this.handleClick}>
+            <Icon name='user' id='Profile' onClick={this.handleClick}/>
+            Profile
+          </Menu.Item>
           <Menu.Item as='a' id='Current Jobs' onClick={this.handleClick}>
-            <Icon name='book' id='Current Jobs'onClick={this.handleClick}/>
+            <Icon name='book' id='Current Jobs' onClick={this.handleClick}/>
             Current Jobs
           </Menu.Item>
           <Menu.Item as='a' id='Settings'onClick={this.handleClick}>
