@@ -5,7 +5,7 @@ import { Divider } from 'semantic-ui-react'
 class SPProfileTab extends Component {
 
   render() {
-    console.log('this is currentUser: ', this.props.currentUser.appointments.length)
+    console.log('this is currentUser: ', this.props.currentUser)
     let fullName = this.props.currentUser.first_name + ' ' + this.props.currentUser.last_name
     return (
       <div>
@@ -19,7 +19,7 @@ class SPProfileTab extends Component {
           <p>{this.props.currentUser.service.availability}</p>
           <Divider />
           <h1>Bookings: </h1>
-          <h4>Number of bookings: {this.props.currentUser.appointments.length}</h4>
+          <h4>Number of bookings: {this.props.currentUser.bookings.length}</h4>
         </div>
       </div>
     )
