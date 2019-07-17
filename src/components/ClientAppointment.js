@@ -52,6 +52,8 @@ class ClientAppointment extends React.Component {
   }
 
   render() {
+    let fullName = this.props.serviceProvider.first_name + " " + this.props.serviceProvider.last_name
+    console.log('this is props from ClientAppointment: ', this.props)
     return (
       <div>
       { this.props.serviceProvider ? <Modal onClose={this.handleClose} open={this.state.modalOpen}
@@ -61,35 +63,38 @@ class ClientAppointment extends React.Component {
                   header={this.props.serviceProvider.first_name}
                   meta={this.props.appointment.service.job}
               />}>
-                 <Modal.Header>{this.props.serviceProvider.first_name} {this.props.serviceProvider.last_name}</Modal.Header>
+                 <Modal.Header>{fullName}</Modal.Header>
                  <Modal.Content image>
                    <Image wrapped size='small' src={this.props.serviceProvider.imgUrl} />
                    <Modal.Description>
+                     <Header>About {fullName}:</Header>
+                     <p>{this.props.appointment.service.description}</p>
+                     <Header>Contact Info:</Header>
+                     <p>{this.props.serviceProvider.email}</p>
                      <Header>Date and Time:</Header>
                      <p>{this.props.appointment.date} at {this.props.appointment.time}</p>
+                       {/*Shows form if clicked on Edit Appointment*/}
+                         {this.state.showForm ? <Form>
+                          <h3>Editting Date and Time:</h3>
+                           <Form.Group>
+                             <DateInput
+                               name="date"
+                               placeholder="Date"
+                               value={this.state.date}
+                               iconPosition="left"
+                               onChange={this.handleChange}
+                             />
+                             <TimeInput
+                               name="time"
+                               placeholder="Time"
+                               value={this.state.time}
+                               iconPosition="left"
+                               onChange={this.handleChange}
+                             />
+                            </Form.Group>
+                            <Form.Button onClick={this.handleEdit}color='blue'>Submit</Form.Button>
+                          </Form> : null}
                    </Modal.Description>
-                   {/*Shows form if clicked on Edit Appointment*/}
-                   <Divider/>
-                   {this.state.showForm ? <Form>
-                    <h3>Editting Date and Time:</h3>
-                     <Form.Group>
-                       <DateInput
-                         name="date"
-                         placeholder="Date"
-                         value={this.state.date}
-                         iconPosition="left"
-                         onChange={this.handleChange}
-                       />
-                       <TimeInput
-                         name="time"
-                         placeholder="Time"
-                         value={this.state.time}
-                         iconPosition="left"
-                         onChange={this.handleChange}
-                       />
-                      </Form.Group>
-                      <Form.Button onClick={this.handleEdit}color='blue'>Submit</Form.Button>
-                    </Form> : null}
                  </Modal.Content>
                  <Modal.Actions>
                    <Button onClick={this.handleShow}>Edit Appointment</Button>

@@ -3,7 +3,7 @@ import { Modal, Button, Image, Header, Icon, Card} from 'semantic-ui-react'
 
 class SPCurrentBooking extends Component {
   render() {
-    console.log('this is SPCurrentBooking: ', this.props.client)
+    console.log('this is SPCurrentBooking!: ', this.props.client)
     let newDate = new Date(this.props.booking.date)
     return (
       <div>
