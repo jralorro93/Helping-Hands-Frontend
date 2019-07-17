@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClientApptContainer from './ClientApptContainer';
 import NewBookingContainer from './NewBookingContainer';
 import ClientSettings from '../components/ClientSettings';
+import ClientProfileTab from '../components/ClientProfileTab';
 import { connect } from 'react-redux';
 
 class ClientPageContainer extends Component {
@@ -12,6 +13,9 @@ class ClientPageContainer extends Component {
     let currentPage = null
     if(this.props.currentUser.id) {
       switch(this.props.selectedPage) {
+        case 'Profile':
+          currentPage = <ClientProfileTab/>
+          break;
         case 'Create a booking':
           currentPage = <NewBookingContainer />
           break;

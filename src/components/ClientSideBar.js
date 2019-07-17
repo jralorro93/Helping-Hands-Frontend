@@ -6,7 +6,7 @@ import DefaultPic from '../assets/images/default-pic.png'
 
 class ClientSideBar extends Component{
   state = {
-    currentPage: 'Create a booking'
+    currentPage: 'Profile'
   }
 
   handleClick = (event) => {
@@ -32,6 +32,10 @@ class ClientSideBar extends Component{
           {this.props.currentUser.imgUrl ? <Image circular src={this.props.currentUser.imgUrl} /> : <Image circular src={DefaultPic} alt='Default Pic'/> }
 
           <Divider/>
+          <Menu.Item as='a' id='Profile' onClick={this.handleClick}>
+            <Icon name='user' id='Profile' onDoubleClick={this.handleClick}/>
+            Profile
+          </Menu.Item>
           <Menu.Item as='a' id='Create a booking' onClick={this.handleClick}>
             <Icon name='pencil' id='Create a booking' onClick={this.handleClick}/>
             Create a booking

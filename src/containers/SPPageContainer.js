@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SPApptContainer from './SPApptContainer';
 import SPSettings from '../components/SPSettings';
-import SPProfileTab from './SPProfileTab';
+import SPProfileTab from '../components/SPProfileTab';
 import { connect } from 'react-redux';
 
 class SPPageContainer extends Component {
