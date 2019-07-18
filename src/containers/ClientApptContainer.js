@@ -1,9 +1,10 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ClientAppointment from '../components/ClientAppointment';
 
 class ClientApptContainer extends Component {
   render() {
+    console.log('this is ClientApptContainer: ', this.props)
     return (
         <div className='BookingContainer'>
           <h2 className='CurrentBookings'>Current Bookings:</h2>

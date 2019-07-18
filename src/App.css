@@ -107,7 +107,7 @@ div.inline.fields.signUpRadio {
 }
 
 div.SignUpPage {
-  background-image: url('./assets/images/Sign-Up-Background.png');
+  background-image: url('./assets/images/background.jpg');
   height: 850px;
 }
 
@@ -147,4 +147,17 @@ div.BookingContainer {
 
 #modalHeader {
   background-color: #CECACA;
+}
+
+div.newJobPage {
+  background-image: url('./assets/images/background.jpg');
+  height: 821px;
+}
+
+div.addingNewJobForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -115px;
+  margin-left: -184px;
 }
