@@ -45,7 +45,6 @@ class ServiceProviderCard extends Component {
 
   render() {
     const { open, dimmer } = this.state
-    console.log('this is props for SPC: ', this.props)
     return (
       <Fragment>
         <Modal onClose={this.handleClose} open={this.state.modalOpen}

@@ -74,7 +74,6 @@ export const loginUserFromToken = token => dispatch => {
     }
   }).then(r => r.json())
     .then(user => {
-      console.log(user)
       dispatch(addUser(user))
     })
 }

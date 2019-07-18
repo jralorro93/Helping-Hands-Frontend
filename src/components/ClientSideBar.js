@@ -16,7 +16,6 @@ class ClientSideBar extends Component{
   }
 
   render() {
-    console.log('this is from store', this.props.currentUser.imgUrl)
     return (
       <Sidebar.Pushable as={Segment}>
         <Sidebar

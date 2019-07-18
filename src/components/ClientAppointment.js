@@ -51,23 +51,24 @@ class ClientAppointment extends React.Component {
     this.handleClose()
   }
 
+
+
   render() {
-    let fullName = this.props.serviceProvider.first_name + " " + this.props.serviceProvider.last_name
-    console.log('this is props from ClientAppointment: ', this.props)
+    console.log('this is ClientAppointment: ', this.props.serviceProvider)
     return (
       <div>
-      { this.props.serviceProvider ? <Modal onClose={this.handleClose} open={this.state.modalOpen}
+        <Modal onClose={this.handleClose} open={this.state.modalOpen}
                 trigger={<Card
                   onClick={() => this.handleOpen() }
                   image={this.props.serviceProvider.imgUrl}
                   header={this.props.serviceProvider.first_name}
                   meta={this.props.appointment.service.job}
               />}>
-                 <Modal.Header id='modalHeader'>{fullName}</Modal.Header>
+                 <Modal.Header id='modalHeader'>{this.props.serviceProvider.first_name} {this.props.serviceProvider.last_name}</Modal.Header>
                  <Modal.Content image>
                    <Image wrapped size='small' src={this.props.serviceProvider.imgUrl} />
                    <Modal.Description>
-                     <Header>About {fullName}:</Header>
+                     <Header>About {this.props.serviceProvider.first_name} {this.props.serviceProvider.last_name}</Header>
                      <p>{this.props.appointment.service.description}</p>
                      <Header>Contact Info:</Header>
                      <p>{this.props.serviceProvider.email}</p>
@@ -100,12 +101,7 @@ class ClientAppointment extends React.Component {
                    <Button color='blue' onClick={this.handleShow}>Edit Appointment</Button>
                    <Button negative onClick={() => this.handleDelete(this.props.appointment)}>Cancel Appointment</Button>
                  </Modal.Actions>
-               </Modal> : <Segment>
-                 <Dimmer active>
-                   <Loader content='Loading' />
-                 </Dimmer>
-              </Segment>
-             }
+               </Modal>
       </div>
     )
   }
