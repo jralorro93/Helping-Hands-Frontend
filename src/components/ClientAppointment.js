@@ -63,7 +63,7 @@ class ClientAppointment extends React.Component {
                   header={this.props.serviceProvider.first_name}
                   meta={this.props.appointment.service.job}
               />}>
-                 <Modal.Header>{fullName}</Modal.Header>
+                 <Modal.Header id='modalHeader'>{fullName}</Modal.Header>
                  <Modal.Content image>
                    <Image wrapped size='small' src={this.props.serviceProvider.imgUrl} />
                    <Modal.Description>
@@ -96,8 +96,8 @@ class ClientAppointment extends React.Component {
                           </Form> : null}
                    </Modal.Description>
                  </Modal.Content>
-                 <Modal.Actions>
-                   <Button onClick={this.handleShow}>Edit Appointment</Button>
+                 <Modal.Actions id='modalHeader'>
+                   <Button color='blue' onClick={this.handleShow}>Edit Appointment</Button>
                    <Button negative onClick={() => this.handleDelete(this.props.appointment)}>Cancel Appointment</Button>
                  </Modal.Actions>
                </Modal> : <Segment>
